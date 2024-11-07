@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class TestSavedData:LocalSaveData
+public class GameStatusSavedData:LocalSaveData
 {
-    public int Num;
+    public int CurLevel;
 
 }

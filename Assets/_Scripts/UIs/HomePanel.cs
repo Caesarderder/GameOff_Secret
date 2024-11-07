@@ -40,9 +40,6 @@ public class HomePanel : ViewBase
     public override void Show()
     {
         base.Show();
-        btn_monobehavior.OnClickAsObservable().Subscribe(_=>OnEnterMono()).AddTo(_disposables);
-        btn_burstAndJobs.OnClickAsObservable().Subscribe(_=>OnEnterBurstAndJobs()).AddTo(_disposables);
-        btn_Ecs.OnClickAsObservable().Subscribe(_=>OnEnterEcs()).AddTo(_disposables);
 
         if_num.onEndEdit.AddListener((x =>
         {
@@ -70,19 +67,6 @@ public class HomePanel : ViewBase
 
     
     
-    private async void OnEnterMono()
-    {
-        await Manager<ActManager>.Inst.LoadAct(EAct.MonoBehaviorAct);
-    }
-
-    private async void OnEnterBurstAndJobs()
-    {
-        await Manager<ActManager>.Inst.LoadAct(EAct.BurstAndJobsAct);
-    }
-    private async void OnEnterEcs()
-    {
-        await Manager<ActManager>.Inst.LoadAct(EAct.EcsAct);
-    }
 
 
 }

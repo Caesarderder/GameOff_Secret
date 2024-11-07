@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 448859067955743069}
   - component: {fileID: 6892161200572107517}
   m_Layer: 0
-  m_Name: EcsAct
+  m_Name: TemplateAct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

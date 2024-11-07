@@ -1,16 +1,22 @@
-using Newtonsoft.Json;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class Init : MonoBehaviour
 {
+
+    [SerializeField]
+    List<GameObject> _initGos;
+
     #region Methods
     public async void Awake()
     {
         await ContainerInit();
         LoadMainAct();
-        Destroy(gameObject);
+        _initGos.Add(gameObject);
+        foreach ( GameObject go in _initGos ) {
+            Destroy(go);
+        }
     }
 
     private async Task ContainerInit()
@@ -23,9 +29,14 @@ public class Init : MonoBehaviour
         var uiManager=new UIManager();
         await uiManager.Init();
 
+
         GContext.RegisterSingleton<TableManager>(tableManager);
         GContext.RegisterSingleton<UIManager>(uiManager);
         GContext.RegisterSingleton<ActManager>();
+        GContext.RegisterSingleton<ResManager>();
+        GContext.RegisterSingleton<InputManager>();
+
+        GContext.RegisterMoudle<InputDataModule>();
 
         Debug.Log("GContext register time:"+Time.time);
 
@@ -34,7 +45,7 @@ public class Init : MonoBehaviour
 
     private void LoadMainAct()
     {
-        _=Manager<ActManager>.Inst.LoadAct(EAct.HomeAct);
+        _=Manager<ActManager>.Inst.LoadAct(EAct.BigWorldAct);
     }
 
     #endregion

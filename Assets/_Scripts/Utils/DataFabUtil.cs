@@ -12,6 +12,10 @@ public static class DataFabUtil
         Debug.Log($"Save LocalData:{key} data:{JsonConvert.SerializeObject(Data)}");
 		PlayerPrefs.SetString(key, JsonConvert.SerializeObject(Data));
 	}
+	public static T LocalLoad<T>() where T: new()
+	{
+		return LocalLoad<T>(typeof(T).Name);
+	}
 
 	public static T LocalLoad<T>(string key) where T: new()
 	{

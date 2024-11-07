@@ -7,20 +7,20 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 #region define
 
+public enum EAct
+{
+    None = -1,
+    HomeAct,
+    BigWorldAct,
+    SmallWorldAct,
+}
+
 public enum EActLoadType
 {
     Only,
     Additive,
 }
 
-public enum EAct
-{
-    None = -1,
-    HomeAct,
-    MonoBehaviorAct,
-    BurstAndJobsAct,
-    EcsAct
-}
 
 public struct SActLoadEvent
 {
