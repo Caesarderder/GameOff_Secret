@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
-public class KeyboardWorldAct : WorldAct
+public class CursorWorldAct : WorldAct
 {
     public override async Task OnLoad()
     {

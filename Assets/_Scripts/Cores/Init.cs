@@ -45,7 +45,7 @@ public class Init : MonoBehaviour
 
     private void LoadMainAct()
     {
-        _=Manager<ActManager>.Inst.LoadAct(EAct.BigWorldAct);
+        _=Manager<ActManager>.Inst.LoadAct<HomeAct>();
     }
 
     #endregion

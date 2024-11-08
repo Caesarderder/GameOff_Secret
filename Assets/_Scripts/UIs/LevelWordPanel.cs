@@ -1,17 +1,25 @@
 using System;
+using System.Threading.Tasks;
 using TMPro;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HomePanel : ViewBase
+public class LevelWordPanel : ViewBase
 {
     [SerializeField]
     TMP_InputField if_num;
     [SerializeField]
     Button 
-        btn_start
+        btn_monobehavior,
+        btn_burstAndJobs,
+        btn_Ecs
         ;
+
+    protected Type _vmType=>typeof(HomePanelVM);
+    HomePanelVM VM=>_vm as HomePanelVM;
+
 
     //UI打开时参数传递
     public void Init(int num)
@@ -37,10 +45,6 @@ public class HomePanel : ViewBase
         {
             DataModule.Resolve<TestDataModule>().OnTestDataChange(int.Parse(x));
         }));
-        btn_start.OnClickAsObservable().Subscribe(x => { 
-            _=Manager<ActManager>.Inst.LoadAct<KeyboardWorldAct>();
-            _=Manager<ActManager>.Inst.LoadAct<CursorWorldAct>();
-        });
     }
 
     public override void Destroy()

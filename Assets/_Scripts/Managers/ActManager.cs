@@ -7,13 +7,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 #region define
 
-public enum EAct
-{
-    None = -1,
-    HomeAct,
-    BigWorldAct,
-    SmallWorldAct,
-}
 
 public enum EActLoadType
 {
@@ -24,22 +17,22 @@ public enum EActLoadType
 
 public struct SActLoadEvent
 {
-    public EAct ActName;
+    public string ActName;
 }
 
 public struct SActLoadedEvent
 {
-    public EAct ActName;
+    public string ActName;
 }
 
 public struct SActUnloadEvent
 {
-    public EAct ActName;
+    public string ActName;
 }
 
 public struct SActUnloadedEvent
 {
-    public EAct ActName;
+    public string ActName;
 }
 
 #endregion
@@ -55,8 +48,9 @@ public class ActManager
     /// <summary>
     /// 使用Addressable加载Act（GameObject），并根据加载类型进行相应操作
     /// </summary>
-    public async Task<ActBase> LoadAct(EAct actName, EActLoadType type=EActLoadType.Only)
+    public async Task<ActBase> LoadAct<T>(EActLoadType type=EActLoadType.Only) where T : ActBase
     {
+        
         // 如果加载类型为 Only，先卸载所有已加载的 Act
         if (type == EActLoadType.Only)
         {
@@ -64,7 +58,7 @@ public class ActManager
         }
 
         AsyncOperationHandle<GameObject> handle;
-        var address = actName.ToString();
+        var address = typeof(T).Name;
         // 防止重复加载
         if (!dic_loadingOps.ContainsKey(address))
         {

@@ -89,15 +89,15 @@ public class DataModule :Module
 
     public void OnLifeCycleCheck(SActUnloadedEvent evt)
     {
-        Debug.Log("Yes2 Act");
+        //Debug.Log("Yes2 Act");
 
         var attribute = Attribute.GetCustomAttribute(this.GetType(), typeof(DataModuleAttribute)) as DataModuleAttribute;
         if (attribute != null) {
-            if(evt.ActName==(EAct)attribute.Scope)
-            {
-                EventAggregator.Unsubscribe<SActUnloadedEvent>(OnLifeCycleCheck);
-                DataModule.Unregister(this.GetType());
-            }
+            //if(evt.ActName==(EAct)attribute.Scope)
+            //{
+            //    EventAggregator.Unsubscribe<SActUnloadedEvent>(OnLifeCycleCheck);
+            //    DataModule.Unregister(this.GetType());
+            //}
         }
     }
 }
