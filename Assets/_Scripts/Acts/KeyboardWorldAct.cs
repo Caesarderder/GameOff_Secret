@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Threading.Tasks;
-public class BigWorldAct : ActBase
+public class KeyboardWorldAct : ActBase
 {
-    public BigWorldPlayer Player;
-    public BigWorldPlanet Planet;
+    public KWPlayer Player;
+    public KWPlanet Planet;
 
     GameStatusDataModule _statusData;
 
@@ -17,8 +17,8 @@ public class BigWorldAct : ActBase
     {
         base.OnLoaded();
         Debug.Log($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
-        Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
-        Player=await Manager<ResManager>.Inst.LoadGo < BigWorldPlayer>(ResManager.BigPlayer);;
+        Planet=await Manager<ResManager>.Inst.LoadGo <KWPlanet >($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
+        Player=await Manager<ResManager>.Inst.LoadGo < KWPlayer>(ResManager.BigPlayer);;
         Player.SetPlanetCenter(Planet.transform);
     }
 

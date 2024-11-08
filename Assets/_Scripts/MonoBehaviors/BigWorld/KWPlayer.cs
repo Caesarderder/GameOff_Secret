@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BigWorldPlayer : MonoBehaviour
+public class KWPlayer : MonoBehaviour
 {
     CharacterController characterController;
     InputDataModule inputDataModule;

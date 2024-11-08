@@ -1,8 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-/// <summary>
-/// 
-/// </summary>
+
 public class BigWorldMovement : MonoBehaviour
 {
     const float maxGravitySpeed=5f;

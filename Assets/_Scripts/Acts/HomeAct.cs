@@ -5,11 +5,17 @@ public class HomeAct : ActBase
     public override async Task OnLoad()
     {
         _=base.OnLoad();
+        //获取引用
         _testDataModule = DataModule.Resolve<TestDataModule>();
 
         var uiManager = Manager<UIManager>.Inst;
+
+        //获取数据
         var num = _testDataModule.GetTestSavedData();
+
+        //加载HomePanel
         var panel = await uiManager.ShowUI<HomePanel>();
+        //
         panel.Init(num);
     }
 

@@ -8,8 +8,9 @@ public class TestDataModule : DataModule
     public override void OnCreate()
     {
         base.OnCreate();
-        _data = DataFabUtil.LocalLoad<TestSavedData>(typeof(TestSavedData).Name);
+        _data = DataFabUtil.LocalLoad<TestSavedData>();
     }
+
     public override void OnDestory()
     {
         base.OnDestory();

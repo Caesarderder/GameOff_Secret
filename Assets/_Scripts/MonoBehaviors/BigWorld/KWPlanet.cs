@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BigWorldPlanet : MonoBehaviour
+public class KWPlanet : MonoBehaviour
 {
     Transform _toFixDirGosParent;
 
