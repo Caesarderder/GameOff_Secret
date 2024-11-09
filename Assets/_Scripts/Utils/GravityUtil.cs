@@ -2,6 +2,23 @@ using UnityEngine;
 
 public static class GravityUtil
 {
+    public static int IsSameDir(Vector2 a,Vector2 b)
+    {
+         var judge=Vector2.Dot(a, b);
+
+        if(judge == 0) return 0;
+        if(judge > 0) return 1;
+         return -1;
+    }
+    public static int IsSameDir(Vector3 a,Vector3 b)
+    {
+         var judge=Vector3.Dot(a, b);
+
+        if(judge == 0) return 0;
+        if(judge > 0) return 1;
+         return -1;
+    }
+    
     public static Vector3 GetFaceVector(Vector3 vec,Vector3 gravityDir)
     {
         Vector3 normalizedGravityDir = gravityDir.normalized;
@@ -23,5 +40,17 @@ public static class GravityUtil
         return -gravity.magnitude;
 }
         return gravity.magnitude;
+    }
+
+    public static Vector3 GetFaceMoveVelocity(Vector2 velocity,Transform tran)
+    {
+        // 将 Vector2 的 x 分量应用在 tran.right 方向
+        Vector3 rightVelocity = tran.right * velocity.x;
+
+        // 将 Vector2 的 y 分量应用在 tran.forward 方向
+        Vector3 forwardVelocity = tran.forward * velocity.y;
+
+        // 返回组合后的 Vector3 速度
+        return rightVelocity + forwardVelocity;
     }
 }

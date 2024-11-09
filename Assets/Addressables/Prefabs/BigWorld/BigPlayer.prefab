@@ -373,8 +373,8 @@ GameObject:
   - component: {fileID: 6416426724278568401}
   - component: {fileID: 7572820526087239349}
   - component: {fileID: 6460011286207852142}
-  - component: {fileID: 5174659028585025457}
   - component: {fileID: 1040242387397235326}
+  - component: {fileID: 3024984435827416077}
   m_Layer: 0
   m_Name: BigPlayer
   m_TagString: Untagged
@@ -514,22 +514,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5174659028585025457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8850821823328942626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388bb16d06678df4782c106d7f53bbf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1040242387397235326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,3 +537,20 @@ MonoBehaviour:
   IsGrounded: 0
   GravityDir: {x: 0, y: 0, z: 0}
   CheckPos: {fileID: 8921048688029819625}
+--- !u!114 &3024984435827416077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850821823328942626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfeb9a22e792a12499edbda3fb90dcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGravitySpeed: 3
+  GravityConst: 5
+  SpeedChangeRate: 1
+  RotateSpeed: 0.5
+  MoveSpeed: 2
