@@ -4,6 +4,7 @@ public class WorldAct : ActBase
 {
     public KWPlayer Player;
     public BigWorldPlanet Planet;
+    public int PlanetIndex;
 
     GameStatusDataModule _statusData;
 
@@ -23,7 +24,7 @@ public class WorldAct : ActBase
         _statusData=DataModule.Resolve<GameStatusDataModule>();
         MoveTo(_initPos);
         Debug.Log($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
-        Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}",tran_entity);
+        Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{PlanetIndex}{_statusData.CurSelectedLevel}",tran_entity);
         Player=await Manager<ResManager>.Inst.LoadGo < KWPlayer>(ResManager.BigPlayer,tran_entity);
         Player.SetPlanetCenter(Planet.transform);
 

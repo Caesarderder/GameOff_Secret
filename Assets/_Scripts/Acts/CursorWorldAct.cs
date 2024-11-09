@@ -4,6 +4,7 @@ public class CursorWorldAct : WorldAct
 {
     public override async Task OnLoad()
     {
+        PlanetIndex = 2;
         base.OnLoad();
     }
 

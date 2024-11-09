@@ -4,6 +4,7 @@ public class KeyboardWorldAct : WorldAct
 {
     public override async Task OnLoad()
     {
+        PlanetIndex = 1;
         base.OnLoad();
     }
 

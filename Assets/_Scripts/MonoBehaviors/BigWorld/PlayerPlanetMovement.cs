@@ -13,7 +13,7 @@ public class PlayerPlanetMovement : PlanetMovementBase
         base.Awake();
         _inputDM = DataModule.Resolve<InputDataModule>();
 
-        Manager<InputManager>.Inst.InputBinding<Vector2>(InputManager.MOVE,(isPress, data) =>
+        Manager<InputManager>.Inst.InputValueBinding<Vector2>(InputManager.MOVE,(isPress, data) =>
         {
             _moveInput=data;
             SetFaceMove(_moveInput.normalized * MoveSpeed);

@@ -8,10 +8,10 @@ public class InputDataModule: DataModule
     public override void OnCreate()
     {
         base.OnCreate();
-        Manager<InputManager>.Inst.InputBinding<Vector2>(InputManager.MOVE,(isPress, data) =>
+        Manager<InputManager>.Inst.InputValueBinding<Vector2>(InputManager.MOVE,(isPress, data) =>
         {
             MoveInput=data;
-            Debug.Log(MoveInput);
+            //Debug.Log(MoveInput);
         });
     }
     public override void OnDestory()

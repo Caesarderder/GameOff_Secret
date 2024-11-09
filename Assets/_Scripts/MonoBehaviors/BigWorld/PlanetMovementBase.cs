@@ -155,14 +155,14 @@ public class PlanetMovementBase : MonoBehaviour
         if ( _canRotate )
         {
             //// 1. 将Vector2输入转换为基于transform.forward和transform.right的3D方向
-            Vector3 targetDirection = GravityUtil.GetFaceMoveVelocity(_faceTargetDir, _entity);
+            //Vector3 targetDirection = GravityUtil.GetFaceMoveVelocity(_faceTargetDir, _entity);
 
             //// 2. 计算目标旋转，使用LookRotation使forward朝向targetDirection，同时保留up方向指向引力方向
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection, _entity.forward);
+            //Quaternion targetRotation = Quaternion.LookRotation(targetDirection, _entity.forward);
 
             //// 3. 使用插值旋转逐渐向目标方向旋转
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
-            Debug.Log("???");
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
+            //Debug.Log("???");
             //transform.Rotate(transform.up, TestRotate * Time.deltaTime);
         }
         // 使用 LookRotation 创建一个旋转，确保 up 方向符合 newUp
