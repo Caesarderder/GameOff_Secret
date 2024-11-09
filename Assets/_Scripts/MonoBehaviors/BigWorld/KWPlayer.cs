@@ -4,7 +4,7 @@ public class KWPlayer : MonoBehaviour
 {
     CharacterController characterController;
     InputDataModule inputDataModule;
-    BigWorldMovement _movement;
+    PlanetMovement _movement;
     public Vector3 Dir;
     public bool IsMove;
 
@@ -12,7 +12,7 @@ public class KWPlayer : MonoBehaviour
     {
         characterController=GetComponent<CharacterController>();        
         inputDataModule = DataModule.Resolve<InputDataModule>();
-        _movement=GetComponent<BigWorldMovement>();
+        _movement=GetComponent<PlanetMovement>();
     }
     public void SetPlanetCenter(Transform center)
     {

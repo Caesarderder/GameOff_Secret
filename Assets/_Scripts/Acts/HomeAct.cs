@@ -15,7 +15,7 @@ public class HomeAct : ActBase
 
         //加载HomePanel
         var panel = await uiManager.ShowUI<HomePanel>();
-        //
+        //传数据
         panel.Init(num);
     }
 
