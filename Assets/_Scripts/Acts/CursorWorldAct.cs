@@ -6,6 +6,7 @@ public class CursorWorldAct : WorldAct
     {
         PlanetIndex = 2;
         base.OnLoad();
+        //获取Planet的transform中的相机
     }
 
     public override async void OnLoaded()

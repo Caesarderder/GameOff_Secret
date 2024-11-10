@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6331470569400997108}
   - component: {fileID: 4436427556189831676}
+  - component: {fileID: 3853746310541315875}
   m_Layer: 0
   m_Name: CursorWorldAct
   m_TagString: Untagged
@@ -80,9 +81,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Planet: {fileID: 0}
+  PlanetIndex: 0
   _initPos: {x: 1.4, y: -0.327, z: 0.382}
   tran_static: {fileID: 651975659369800339}
   tran_entity: {fileID: 8382429716110015590}
+--- !u!114 &3853746310541315875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829772098506132068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e1bdcc7527c4441b2959d3e4bce757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightCamera: {fileID: 0}
+  rightRawImage: {fileID: 0}
+  Go1: {fileID: 0}
+  Go2: {fileID: 0}
 --- !u!1 &1961521541862714833
 GameObject:
   m_ObjectHideFlags: 0
