@@ -13,12 +13,12 @@ public class InteractTest1 : MonoBehaviour, IPlayerInteractable
     {
         EventAggregator.Unsubscribe<InteractTest2Event>(OnMove);
     }
-    public void EnterTrigger(KWPlayer player)
+    public void EnterTrigger(Player player)
     {
         Debug.Log("Enter");
     }
 
-    public void ExitTrigger(KWPlayer player )
+    public void ExitTrigger(Player player )
     {
         Debug.Log("Exit");
     }

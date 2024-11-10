@@ -15,12 +15,12 @@ public class InputManager
         {
             action.started+= (x)=> {
                 var data = x.ReadValue<T>();
-                listener.Invoke(true,data);
+                listener?.Invoke(true,data);
             };
 
             action.canceled += (x)=> {
                 var data = x.ReadValue<T>();
-                listener.Invoke(false, data);
+                listener?.Invoke(false, data);
             };
         }
         else
@@ -32,11 +32,11 @@ public class InputManager
         if ( action != null )
         {
             action.started+= (x)=> {
-                listener.Invoke(true);
+                listener?.Invoke(true);
             };
 
             action.canceled += (x)=> {
-                listener.Invoke(false);
+                listener?.Invoke(false);
             };
         }
         else

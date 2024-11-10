@@ -436,13 +436,13 @@ GameObject:
   - component: {fileID: 2262844750080953503}
   - component: {fileID: 9196200735273359587}
   - component: {fileID: 8866562153391749767}
-  - component: {fileID: 6416426724278568401}
   - component: {fileID: 7572820526087239349}
   - component: {fileID: 6460011286207852142}
   - component: {fileID: 1040242387397235326}
   - component: {fileID: 3024984435827416077}
+  - component: {fileID: 1978896020779320520}
   m_Layer: 0
-  m_Name: BigPlayer
+  m_Name: CWPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,21 +521,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6416426724278568401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8850821823328942626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c10cf9b4199e1544b72ae42720a4ac3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dir: {x: 0, y: 0, z: 0}
-  IsMove: 0
-  InteractInput: 0
 --- !u!136 &7572820526087239349
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -623,3 +608,18 @@ MonoBehaviour:
   RotateSpeed: 0.5
   TestRotate: 20
   MoveSpeed: 2
+--- !u!114 &1978896020779320520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850821823328942626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd7c772fd9c5034c94924955d774bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dir: {x: 0, y: 0, z: 0}
+  IsMove: 0
+  InteractInput: 0
