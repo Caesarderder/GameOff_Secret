@@ -60,9 +60,9 @@ namespace Kamgam.SkyClouds.URP
                 // We abort if the dir is not found because we assume the
                 // user has moved the asset and thus any upgrade attempts
                 // will probably fail anyways.
-                Logger.LogWarning(
-                        "Could not find version info directory: '" + getVersionFileDir() + "'. Aborting upgrade. Did you move the asset?\n" +
-                        "If you want auto-upgrades to work again then please restore the asset to the original directory (" + Installer.AssetRootPath + ").");
+                //Logger.LogWarning(
+                //        "Could not find version info directory: '" + getVersionFileDir() + "'. Aborting upgrade. Did you move the asset?\n" +
+                //        "If you want auto-upgrades to work again then please restore the asset to the original directory (" + Installer.AssetRootPath + ").");
                 return false;
             }
 
