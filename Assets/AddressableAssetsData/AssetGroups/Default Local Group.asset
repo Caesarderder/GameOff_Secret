@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: f44c9d6b9594f2346985918f04288be1
   m_SerializeEntries:
   - m_GUID: 07f1d78c9cd85fa4c8d6d8697dab1e47
-    m_Address: BigPlayer
+    m_Address: KWPlayer
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -30,8 +30,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b5ae8361232d24479f0345333b2b2ac
+    m_Address: GamePlayPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4486ca85ea4aaf642bd592b59ca8bda2
     m_Address: CharacterConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 545b0ce856a91b44498b36dd8404b70e
+    m_Address: CWPlayer
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

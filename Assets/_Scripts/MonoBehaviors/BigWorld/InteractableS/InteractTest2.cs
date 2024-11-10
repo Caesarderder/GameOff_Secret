@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractTest2: MonoBehaviour, IPlayerInteractable
@@ -12,12 +11,12 @@ public class InteractTest2: MonoBehaviour, IPlayerInteractable
     {
         EventAggregator.Unsubscribe<InteractTest1Event>(OnScale);
     }
-    public void EnterTrigger(KWPlayer player)
+    public void EnterTrigger(Player player)
     {
         Debug.Log(GetType().Name+"Enter");
     }
 
-    public void ExitTrigger(KWPlayer player )
+    public void ExitTrigger(Player player )
     {
         Debug.Log(GetType().Name+"Exit");
     }

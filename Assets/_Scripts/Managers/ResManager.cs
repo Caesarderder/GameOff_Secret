@@ -10,7 +10,8 @@ public class ResManager
 {
     #region Fields Øé¶û Å®×Ó
     public static readonly string BigPlanet="BigPlanet";
-    public static readonly string BigPlayer="BigPlayer";
+    public static readonly string KWPlayer="KWPlayer";
+    public static readonly string CWPlayer="CWPlayer";
 
 
     private Dictionary<string, AsyncOperationHandle<GameObject>> dic_loadingOps = new Dictionary<string, AsyncOperationHandle<GameObject>>();

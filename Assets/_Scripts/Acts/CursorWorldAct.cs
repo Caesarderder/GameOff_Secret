@@ -6,6 +6,9 @@ public class CursorWorldAct : WorldAct
     {
         PlanetIndex = 2;
         base.OnLoad();
+        Player = await Manager<ResManager>.Inst.LoadGo<KWPlayer>(ResManager.CWPlayer, tran_entity);
+        Player.SetPlanetCenter(Planet.transform);
+        //获取Planet的transform中的相机
     }
 
     public override async void OnLoaded()

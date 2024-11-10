@@ -9,10 +9,10 @@ public class WorldAct : ActBase
     GameStatusDataModule _statusData;
 
     [SerializeField]
-    Vector3 _initPos;    
+    protected Vector3 _initPos;    
 
     [SerializeField]
-    Transform 
+    protected Transform 
         tran_static, 
         tran_entity
         ;
@@ -25,8 +25,6 @@ public class WorldAct : ActBase
         MoveTo(_initPos);
         Debug.Log($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
         Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{PlanetIndex}{_statusData.CurSelectedLevel}",tran_entity);
-        Player=await Manager<ResManager>.Inst.LoadGo < KWPlayer>(ResManager.BigPlayer,tran_entity);
-        Player.SetPlanetCenter(Planet.transform);
 
     }
 

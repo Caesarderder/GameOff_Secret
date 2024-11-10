@@ -51,7 +51,7 @@ namespace Kamgam.SkyClouds.URP
 
         public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
         {
-            Logger.LogMessage($"Build target changed from {previousTarget} to {newTarget}. Refreshing define symbols.");
+            //Logger.LogMessage($"Build target changed from {previousTarget} to {newTarget}. Refreshing define symbols.");
             AddDefineSymbol();
         }
 
@@ -117,7 +117,7 @@ namespace Kamgam.SkyClouds.URP
 #else
 					PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup, currentDefineSymbols);
 #endif
-					Logger.LogMessage($"{Define} symbol has been removed for {targetGroup}.");
+					//Logger.LogMessage($"{Define} symbol has been removed for {targetGroup}.");
 				}
 
             }
