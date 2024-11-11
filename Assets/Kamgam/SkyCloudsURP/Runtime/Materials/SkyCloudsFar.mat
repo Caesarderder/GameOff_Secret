@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyCloudsSmall_Scale_4
+  m_Name: SkyCloudsFar
   m_Shader: {fileID: 4800000, guid: f3ab1f0af3ea8924e8548d436e24e0b5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -58,14 +58,14 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scale: 4
+    - _Scale: 54.51
     - _SpecularHighlights: 1
     - _TessEdgeLength: 7
-    - _TessMax: 20
+    - _TessMax: 200000
     - _TessMaxDisp: 10
-    - _TessMin: 1
+    - _TessMin: 100000
     - _TessPhongStrength: 0.5
-    - _TessValue: 8
+    - _TessValue: 1
     - _TransAmbient: 0.1
     - _TransDirect: 0.9
     - _TransNormal: 0.5
@@ -73,19 +73,19 @@ Material:
     - _TransShadow: 0.5
     - _TransStrength: 1
     - _VertexColorStrength: 0.3
-    - _VorSpeed: 0.05
+    - _VorSpeed: 0.51
     - _VoronoiScale: 1.4
     - _VoronoiStrength: 0.8
     - _WindSpeed: 1
     m_Colors:
     - _AdditionalNoiseDir: {r: 0, g: 0, b: 0, a: 0}
     - _AdditionalVoronoiDir: {r: 0.7, g: -0.3, b: -0.3, a: 0}
-    - _BaseColor: {r: 0.740566, g: 0.8528766, b: 1, a: 1}
+    - _BaseColor: {r: 0.7896493, g: 0.8646483, b: 0.990566, a: 1}
     - _DepthColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmmissiveColor: {r: 0.4501157, g: 0.6030596, b: 0.8018868, a: 0}
+    - _EmmissiveColor: {r: 0.371885, g: 0.46040094, b: 0.5754717, a: 0}
     - _EmmissiveVoronoi: {r: 0.54828763, g: 0.6286017, b: 0.7283019, a: 0}
-    - _Mask0: {r: -3.69, g: -0.19, b: 1, a: 0.7}
+    - _Mask0: {r: 0, g: -999, b: 0, a: 0.001}
     - _Mask1: {r: 0, g: -999, b: 0, a: 0.001}
     - _NoiseDir: {r: 1, g: 1, b: 1, a: 0}
     - _NoiseScale3D: {r: 1, g: 0.2, b: 0.6, a: 0}
