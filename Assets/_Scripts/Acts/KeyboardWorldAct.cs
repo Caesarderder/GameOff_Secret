@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Threading.Tasks;
 public class KeyboardWorldAct : WorldAct
 {
+    KWPlayer KWPlayer=>Player as KWPlayer;
     public override async Task OnLoad()
     {
         PlanetIndex = 1;
-        base.OnLoad();
+        await base.OnLoad();
         Player = await Manager<ResManager>.Inst.LoadGo<KWPlayer>(ResManager.KWPlayer, tran_entity);
         Player.SetPlanetCenter(Planet.transform);
+        KWPlayer.Init(Planet.Camera);
     }
 
     public override async void OnLoaded()

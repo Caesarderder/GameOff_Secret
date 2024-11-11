@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class BigWorldPlanet : MonoBehaviour
 {
-    Transform _toFixDirGosParent;
+    public Transform _toFixDirGosParent;
+    public Camera Camera;
 
     public void Awake()
     {
-        _toFixDirGosParent = transform.Find("StaticMesh");
     }
     public void Start()
     {

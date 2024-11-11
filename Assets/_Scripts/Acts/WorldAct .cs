@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 public class WorldAct : ActBase
 {
-    public KWPlayer Player;
+    public Player Player;
     public BigWorldPlanet Planet;
     public int PlanetIndex;
 

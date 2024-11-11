@@ -100,9 +100,12 @@ public class PlanetMovementBase : MonoBehaviour
     }    
     public void SetFaceMove(Vector2 dir)
     {
-        _faceMoveDir2= dir;
+        if(dir.magnitude>0)
+        {
+            _faceMoveDir2 = dir;
+            _faceMoveDir2.Normalize();
+        }
         _faceTargetSpeed =dir.magnitude;
-        _faceMoveDir2.Normalize();
     }    
     public void SetFaceRotation(Vector2 dir)
     {

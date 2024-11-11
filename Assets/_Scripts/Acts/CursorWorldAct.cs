@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Threading.Tasks;
 public class CursorWorldAct : WorldAct
 {
+    CWPlayer CWPlayer => Player as CWPlayer;
     public override async Task OnLoad()
     {
         PlanetIndex = 2;
-        base.OnLoad();
-        Player = await Manager<ResManager>.Inst.LoadGo<KWPlayer>(ResManager.CWPlayer, tran_entity);
+        await base.OnLoad();
+        Player = await Manager<ResManager>.Inst.LoadGo<CWPlayer>(ResManager.CWPlayer, tran_entity);
+        Debug.Log("???");
         Player.SetPlanetCenter(Planet.transform);
         //获取Planet的transform中的相机
     }

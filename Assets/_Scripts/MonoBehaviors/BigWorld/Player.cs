@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    PlayerPlanetMovement _movement;
+    protected KWPlayerPlanetMovement _movement;
     InteractableSense _sense;
 
     public Vector3 Dir;
@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _movement=GetComponent<PlayerPlanetMovement>();
+        _movement=GetComponent<KWPlayerPlanetMovement>();
         _sense=GetComponentInChildren<InteractableSense>();
         _sense.Listener += OnInteractableTrigger;
     }
