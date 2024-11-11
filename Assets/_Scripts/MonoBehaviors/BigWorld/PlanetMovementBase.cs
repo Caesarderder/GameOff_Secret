@@ -9,7 +9,7 @@ public class PlanetMovementBase : MonoBehaviour
     public float RotateSpeed= 0.5f;
     public float TestRotate= 20f;
 
-    protected Transform _planetCenter;
+    public Transform PlanetCenter;
     protected Transform _entity;
 
     protected GroundCollisionSense _groundSense;
@@ -24,13 +24,14 @@ public class PlanetMovementBase : MonoBehaviour
     protected float
         _gravitySpeed;
     protected Vector3
-        _gravityDir => ( -_entity.position + _planetCenter.position ).normalized;
+        _gravityDir => ( -_entity.position + PlanetCenter.position ).normalized;
 
     #endregion
 
     #region faceDir
+    public bool IsTargetMoving;
     protected bool
-        _canRotate;
+        _isRotating;
     protected bool
         _canFaceDirMove;
 
@@ -38,12 +39,17 @@ public class PlanetMovementBase : MonoBehaviour
         _faceCurSpeed,
         _faceCurRotation;
 
+    //外界赋值
+    protected Vector3
+        _faceTargetPos;
     protected float
         _faceTargetSpeed;
-    protected Vector2
+    protected Vector3
         _faceTargetDir;
+
+    //内部计算
     protected Vector2
-        _faceMoveDir2;
+        _faceMoveLocalDir2;
     protected Vector3
         _faceMoveDir3;
 
@@ -61,8 +67,10 @@ public class PlanetMovementBase : MonoBehaviour
         _groundSense = GetComponent<GroundCollisionSense>();
         _useGravity = true;
         _canGravityMove = true;
-        _canRotate = true;
+        _isRotating = true;
         _canFaceDirMove = true;
+        IsTargetMoving=true;
+
         _rb.isKinematic = false;
         _rb.useGravity = false;
 
@@ -75,8 +83,12 @@ public class PlanetMovementBase : MonoBehaviour
         FixStandDir();
         FixVelocity();
         ApplyGravity();
+        if(IsTargetMoving)
+        {
+            FixFaceMoveDir();
+            FaceMove();
+        }
         FaceRotate();
-        FaceMove();
         _rb.linearVelocity = _tempVelocity;
     }
     void FixVelocity()
@@ -87,47 +99,49 @@ public class PlanetMovementBase : MonoBehaviour
     }
 
     public void SetPlanetCenter(Transform tran)  {
-        _planetCenter = tran;
+        PlanetCenter = tran;
         _lastGravityDir = _gravityDir;
 } 
     public void SetFaceMoveTargetSpeed(float velocity)
     {
         _faceTargetSpeed = velocity;
     }    
-    public void SetFaceMoveDir(Vector2 dir)
+    public void SetFaceTargetPos(Vector3 pos)
     {
-        _faceMoveDir2= dir.normalized;
+        IsTargetMoving = true;
+        _faceTargetPos= pos;
     }    
-    public void SetFaceMove(Vector2 dir)
-    {
-        if(dir.magnitude>0)
-        {
-            _faceMoveDir2 = dir;
-            _faceMoveDir2.Normalize();
-        }
-        _faceTargetSpeed =dir.magnitude;
-    }    
-    public void SetFaceRotation(Vector2 dir)
+
+    public void SetFaceRotation(Vector3 dir)
     {
         _faceTargetDir = dir;
+        _isRotating = true;
     }
+    public void DisableFaceRotation()
+    {
+        _isRotating = false;
+    }
+
 
     protected virtual void FixStandDir()
     {
-        //var targetUpDirection=-_gravityDir;
-        //// 获取当前的水平 forward 方向（消除与 up 轴的影响）
-        //Vector3 forwardOnPlane = Vector3.ProjectOnPlane(transform.forward, targetUpDirection).normalized;
-
-        //// 设置新的旋转，使得 up 轴指向 targetUpDirection，同时保持水平朝向
-        //transform.rotation = Quaternion.LookRotation(forwardOnPlane, targetUpDirection);
-        //_tempUp= -_gravityDir;
-
         // 计算一个朝向gravityDir的旋转
         Quaternion targetRotation = Quaternion.FromToRotation(transform.up, -_gravityDir) * transform.rotation;
 
         // 应用旋转
         transform.rotation = targetRotation;
     }
+
+    protected virtual void FixFaceMoveDir()
+    {
+        //移动方向朝向目标位置
+        //var localDir= transform.InverseTransformDirection(_faceTargetPos);
+        //localDir.z = 0f;
+
+        _faceMoveDir3 = GravityUtil.GetFaceMoveDir(_faceTargetPos-_entity.transform.position,_entity).normalized ;
+        
+    }
+
     protected virtual void ApplyGravity()
     {
         if ( _useGravity )
@@ -155,40 +169,36 @@ public class PlanetMovementBase : MonoBehaviour
 
     protected virtual void FaceRotate()
     {
-        if ( _canRotate )
+        if ( _isRotating )
         {
-            //// 1. 将Vector2输入转换为基于transform.forward和transform.right的3D方向
-            //Vector3 targetDirection = GravityUtil.GetFaceMoveVelocity(_faceTargetDir, _entity);
+            // 获取当前的方向并插值到目标方向
+            Vector3 smoothedDirection = Vector3.Lerp(transform.forward, _faceMoveDir3, RotateSpeed* Time.deltaTime);
 
-            //// 2. 计算目标旋转，使用LookRotation使forward朝向targetDirection，同时保留up方向指向引力方向
-            //Quaternion targetRotation = Quaternion.LookRotation(targetDirection, _entity.forward);
+            Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, smoothedDirection) * transform.rotation;
 
-            //// 3. 使用插值旋转逐渐向目标方向旋转
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotateSpeed * Time.deltaTime);
-            //Debug.Log("???");
-            //transform.Rotate(transform.up, TestRotate * Time.deltaTime);
+            transform.rotation = targetRotation;
         }
-        // 使用 LookRotation 创建一个旋转，确保 up 方向符合 newUp
-        //transform.rotation = Quaternion.LookRotation(_tempForward, -_gravityDir);
 
     }
 
     protected virtual void FaceMove()
     {
-        //var velocity= _rb.linearVelocity;
-        // a reference to the players current horizontal velocity
-        //_faceCurSpeed= GravityUtil.GetFaceVector(velocity,_gravityDir).magnitude;
 
         float speedOffset = 0.1f;
 
         // accelerate or decelerate to target speed
-        if ( _faceCurSpeed < _faceTargetSpeed - speedOffset ||
-            _faceCurSpeed > _faceTargetSpeed + speedOffset )
+        if ( _faceCurSpeed < _faceTargetSpeed - speedOffset
+             )
         {
-            // creates curved result rather than a linear one giving a more organic speed change
-            // note T in Lerp is clamped, so we don't need to clamp our speed
             _faceCurSpeed = Mathf.Lerp(_faceCurSpeed, _faceTargetSpeed,
                 Time.deltaTime * SpeedChangeRate);
+
+            _faceCurSpeed = Mathf.Round(_faceCurSpeed * 1000f) / 1000f;
+        }
+        else if(_faceCurSpeed > _faceTargetSpeed + speedOffset)
+        {
+            _faceCurSpeed = Mathf.Lerp(_faceCurSpeed, _faceTargetSpeed,
+                Time.deltaTime * SpeedChangeRate*4f);
 
             // round speed to 3 decimal places
             _faceCurSpeed = Mathf.Round(_faceCurSpeed * 1000f) / 1000f;
@@ -198,22 +208,29 @@ public class PlanetMovementBase : MonoBehaviour
             _faceCurSpeed = _faceTargetSpeed;
         }
 
-        //_faceCurSpeed = _faceTargetSpeed;
+        if(IsTargetMoving)
+        {
+            if(Vector3.Angle(_faceTargetPos-PlanetCenter.position,-_gravityDir)<2f)
+            {
+                Debug.Log("到达！");
+                IsTargetMoving = false;
+                _faceCurSpeed = 0f;
+            }
+        }    
 
-         _faceMoveDir3=GravityUtil.GetFaceMoveVelocity(_faceMoveDir2,_entity);
         _tempVelocity += _faceMoveDir3.normalized*_faceCurSpeed;
     }
 
     private void OnDrawGizmos()
     {
-        if(_entity &&_planetCenter)
+        if(_entity &&PlanetCenter)
         {
             Gizmos.color = Color.green;
             var velocity = _rb.linearVelocity;
             Gizmos.DrawLine(_entity.position, _entity.position + _faceMoveDir3*_faceCurSpeed);
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(_entity.position, _entity.position +GravityUtil.GetFaceMoveVelocity(_faceMoveDir2, _entity)*_faceTargetSpeed);
+            Gizmos.DrawLine(_entity.position, _entity.position +GravityUtil.GetFaceMoveVelocity(_faceMoveLocalDir2, _entity)*_faceTargetSpeed);
             ;
         }
 

@@ -443,7 +443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3903094444294974
 Transform:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   Dir: {x: 0, y: 0, z: 0}
   IsMove: 0
   InteractInput: 0
-  MoveSpeed: 5
+  MoveSpeed: 1
   test: {fileID: 2204408820681175814}
 --- !u!136 &7572820526087239349
 CapsuleCollider:
@@ -741,5 +741,6 @@ MonoBehaviour:
   maxGravitySpeed: 3
   GravityConst: 5
   SpeedChangeRate: 1
-  RotateSpeed: 0.5
+  RotateSpeed: 10
   TestRotate: 20
+  PlanetCenter: {fileID: 0}

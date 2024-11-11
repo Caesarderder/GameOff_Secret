@@ -3,8 +3,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     protected KWPlayerPlanetMovement _movement;
-    InteractableSense _sense;
+    protected InteractableSense _sense;
 
+    public float MoveSpeed=5f;
     public Vector3 Dir;
     public bool IsMove;
     public bool InteractInput;

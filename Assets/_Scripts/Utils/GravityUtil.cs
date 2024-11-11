@@ -53,4 +53,20 @@ public static class GravityUtil
         // 返回组合后的 Vector3 速度
         return rightVelocity + forwardVelocity;
     }
+
+    public static Vector3 GetFaceMoveDir(Vector3 dir,Transform tran)
+    {
+        // 获取 Transform 的 forward 和 right 方向向量
+        Vector3 forward = tran.forward;
+        Vector3 right = tran.right;
+
+        // 计算 vector 在 forward 和 right 方向上的投影分量
+        Vector3 projectionOnForward = Vector3.Project(dir, forward);
+        Vector3 projectionOnRight = Vector3.Project(dir, right);
+
+        // 将这两个分量相加，得到投影在 forward 和 right 组成的平面上的向量
+        Vector3 projectedVector = projectionOnForward + projectionOnRight;
+
+        return projectedVector.normalized;
+    }
 }

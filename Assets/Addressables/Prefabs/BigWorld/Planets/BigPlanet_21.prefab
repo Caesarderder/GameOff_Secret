@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4955964644632716167}
   - component: {fileID: 5247244285907071274}
   - component: {fileID: 285955441272293207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 6766174969952725955}
   m_Layer: 0
   m_Name: BigPlanet_21
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 798517297888624881}
   - component: {fileID: 505504738332125487}
   - component: {fileID: 3752329282766164577}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 679518889954410733}
   - component: {fileID: 6653795185310972837}
   - component: {fileID: 4948002876174288886}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Planet 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 7948948443645120887}
   - component: {fileID: 7477571553313612531}
   - component: {fileID: 1646430882152636034}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499175096515614590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StaticMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 7422392259158053108}
   - component: {fileID: 6624315004804144994}
   - component: {fileID: 4565767540953367628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 8306588222820898040}
   - component: {fileID: 5588583899196808708}
   - component: {fileID: 1835992420789641122}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

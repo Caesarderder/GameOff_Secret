@@ -1,10 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KWPlayer : Player
 {
     InputDataModule inputDataModule;
-    InteractableSense _sense;
-    public float MoveSpeed=5f;
     Camera _camera;
     Vector2 _moveInput;
 
@@ -38,28 +37,24 @@ public class KWPlayer : Player
     private void ProcessMoveInput(Vector2 data)
     {
         _moveInput = data;
-        var worldInput = new Vector3(_moveInput.x,  _moveInput.y,0f);
-        // 将世界坐标系中的方向向量转换为玩家局部坐标系中的方向向量
-        localDirection = transform.InverseTransformDirection(_moveInput);
-
-        // 将局部坐标系中的z分量设置为0，确保它只在xy平面内
-        localDirection.z = 0;
-        localDirection.Normalize();
-
-        // 转换为Vector2，表示局部坐标系中的xy平面方向
-        Vector2 local2D = new Vector2(localDirection.x, localDirection.y);
-
-        // 调整方向并设置玩家的移动速度
-        _movement.SetFaceMove(local2D.normalized* MoveSpeed);
 
         if(_moveInput!=Vector2.zero)
         {
-            test.transform.up = worldInput;
+            Vector3 local3D = _movement.PlanetCenter.position + _camera.transform.up * _moveInput.y * 10f + _camera.transform.right * _moveInput.x * 10f;
+
+            test.transform.up = local3D - test.transform.position;
+            // 调整方向并设置玩家的移动速度
+            _movement.SetFaceTargetPos(local3D);
+            _movement.SetFaceMoveTargetSpeed(MoveSpeed);
+            _movement.SetFaceRotation(local3D);
+            Debug.Log("MOve To" + local3D);
         }
-
-        // 调试输出
-        Debug.Log($"old:{_moveInput} new {local2D}");
-
+        else
+        {
+            //_movement.SetFaceTargetPos(_movement.transform.position);
+            _movement.SetFaceMoveTargetSpeed(0f);
+            _movement.DisableFaceRotation();
+        }
 
     }
     protected override void OnDestroy()

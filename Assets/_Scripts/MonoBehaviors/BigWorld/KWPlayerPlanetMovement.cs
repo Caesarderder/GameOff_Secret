@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class KWPlayerPlanetMovement : PlanetMovementBase
 {
-    
-
-
     protected override void Awake()
     {
         base.Awake();
-
     }
 
     protected override void FaceMove()
