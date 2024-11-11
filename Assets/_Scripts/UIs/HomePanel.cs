@@ -40,7 +40,11 @@ public class HomePanel : ViewBase
         btn_start.OnClickAsObservable().Subscribe(x => { 
             _=Manager<ActManager>.Inst.LoadAct<KeyboardWorldAct>();
             _=Manager<ActManager>.Inst.LoadAct<CursorWorldAct>();
+
+            _= Manager<UIManager>.Inst.ShowUI<GamePlayPanel>();  //¶¯Ì¬¼ÓÔØGamePlayPanel
         });
+
+
     }
 
     public override void Destroy()
