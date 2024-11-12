@@ -6,7 +6,7 @@ public class WorldAct : ActBase
     public BigWorldPlanet Planet;
     public int PlanetIndex;
 
-    GameStatusDataModule _statusData;
+    GameStatusDM _statusData;
 
     [SerializeField]
     protected Vector3 _initPos;    
@@ -21,7 +21,7 @@ public class WorldAct : ActBase
     {
         base.OnLoad();
 
-        _statusData=DataModule.Resolve<GameStatusDataModule>();
+        _statusData=DataModule.Resolve<GameStatusDM>();
         MoveTo(_initPos);
         Debug.Log($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
         Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{PlanetIndex}{_statusData.CurSelectedLevel}",tran_entity);

@@ -37,6 +37,7 @@ public class Init : MonoBehaviour
         GContext.RegisterSingleton<InputManager>();
 
         GContext.RegisterMoudle<InputDataModule>();
+        GContext.RegisterMoudle<GameStatusDM>();
 
         Debug.Log("GContext register time:"+Time.time);
 

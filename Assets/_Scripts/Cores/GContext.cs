@@ -1,10 +1,5 @@
 using System;
 using System.Collections.Generic;
-public enum EGameState
-{
-    Login,
-    Stage,
-}
 public struct SGameStateChangeEvent
 {
     public EGameState OldState;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameStatusSavedData:LocalSaveData
 {
-    public int CurLevel;
+    public int UnlockLevelCount;
+    public int CurSelectedLevel;
 
 }
