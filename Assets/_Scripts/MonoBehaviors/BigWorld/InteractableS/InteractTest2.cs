@@ -23,6 +23,8 @@ public class InteractTest2: MonoBehaviour, IPlayerInteractable
 
     public void Interact()
     {
+        //DataModule.Resolve<GamePlayDM>().Intent.Clear();
+        //DataModule.Resolve<GamePlayDM>().Intent.AddInt("Bag1", 1001);
         Debug.Log(GetType().Name+"INteract");
         EventAggregator.Publish(new InteractTest2Event());
     }

@@ -6,7 +6,7 @@ public class GamePlayDM : DataModule
     #region Fileds 亻尔 女子
 
     //关卡状态
-    Intent _intent;
+    public Intent Intent;
 
 
     #endregion
@@ -30,7 +30,7 @@ public class GamePlayDM : DataModule
     {
         if ( evt.ActName == typeof(KeyboardWorldAct).Name )
         {
-            _intent = Intent.Get();
+            Intent = Intent.Get();
         }
     }
 
@@ -38,8 +38,8 @@ public class GamePlayDM : DataModule
     {
         if ( evt.ActName == typeof(KeyboardWorldAct).Name )
         {
-            _intent.Clear();
-            _intent = null;
+            Intent.Clear();
+            Intent = null;
         }
     }
 

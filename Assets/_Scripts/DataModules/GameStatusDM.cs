@@ -8,12 +8,6 @@ public enum EWorldType
     CW=1,
 }
 
-public enum EItemType
-{
-    None=-1,
-
-}
-
 public enum EGameState
 {
     Home,
