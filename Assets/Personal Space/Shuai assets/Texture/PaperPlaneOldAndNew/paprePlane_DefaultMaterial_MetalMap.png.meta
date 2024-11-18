@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      paprePlane_DefaultMaterial_MetalMap_0: -1815024921212613509
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

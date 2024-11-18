@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mossy_Mound_ti1vddyda_Mid_2K_BaseColor_0: -288816032277667797
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wand_Staff_MetalMap_0: -1556661193691107911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

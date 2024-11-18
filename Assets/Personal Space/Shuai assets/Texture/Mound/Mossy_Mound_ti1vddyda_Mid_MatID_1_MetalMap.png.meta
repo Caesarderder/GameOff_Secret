@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mossy_Mound_ti1vddyda_Mid_MatID_1_MetalMap_0: 1225877832918519820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

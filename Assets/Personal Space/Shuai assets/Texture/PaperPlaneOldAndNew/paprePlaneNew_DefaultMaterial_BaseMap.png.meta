@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      paprePlaneNew_DefaultMaterial_BaseMap_0: 8742901859811686273
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
