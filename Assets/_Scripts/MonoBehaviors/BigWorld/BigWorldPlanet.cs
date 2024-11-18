@@ -2,12 +2,34 @@ using UnityEngine;
 
 public class BigWorldPlanet : MonoBehaviour
 {
+    [HideInInspector]
     public Transform _toFixDirGosParent;
+    [HideInInspector]
     public Camera Camera;
+    [HideInInspector]
+    public EWorldType WorldType;
+    
+
+    public void SetWorldType(EWorldType type)
+    {
+        WorldType = type;
+        SetItemBelongWorld();
+    }
+
+
+    public void SetItemBelongWorld()
+    {
+        var components=GetComponentsInChildren<Item>();
+        foreach (var item in components)
+        {
+            item.BelongWorld = WorldType;
+        }
+    }
 
     public void Awake()
     {
     }
+
     public void Start()
     {
         FixAllGosDir();

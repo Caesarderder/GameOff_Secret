@@ -43,10 +43,10 @@ public class Player : MonoBehaviour
     {
         if ( isEnter )
         {
-            interactable.EnterTrigger(this);
+            interactable.EnterTrigger(transform);
         }
         else { 
-            interactable.ExitTrigger(this);
+            interactable.ExitTrigger(transform);
         }
     }
 

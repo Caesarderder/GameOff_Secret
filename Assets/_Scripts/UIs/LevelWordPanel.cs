@@ -17,10 +17,6 @@ public class LevelWordPanel : ViewBase
         btn_Ecs
         ;
 
-    protected Type _vmType=>typeof(HomePanelVM);
-    HomePanelVM VM=>_vm as HomePanelVM;
-
-
     //UI打开时参数传递
     public void Init(int num)
     {

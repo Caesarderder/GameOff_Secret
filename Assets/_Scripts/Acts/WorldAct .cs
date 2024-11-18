@@ -20,11 +20,11 @@ public class WorldAct : ActBase
     public override async Task OnLoad()
     {
         base.OnLoad();
-
         _statusData=DataModule.Resolve<GameStatusDM>();
         MoveTo(_initPos);
         Debug.Log($"{ResManager.BigPlanet}_{_statusData.CurSelectedLevel}");
         Planet=await Manager<ResManager>.Inst.LoadGo <BigWorldPlanet >($"{ResManager.BigPlanet}_{PlanetIndex}{_statusData.CurSelectedLevel}",tran_entity);
+        Planet.SetWorldType((EWorldType)PlanetIndex);
 
     }
 

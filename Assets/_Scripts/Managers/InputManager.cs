@@ -16,6 +16,10 @@ public class InputManager
         var action = InputSystem.actions.FindAction(name);
         if (action != null)
         {
+            action.started += (x) => {
+                var data = x.ReadValue<T>();
+                listener?.Invoke(true, data);
+            };
             action.performed += (x) => {
                 var data = x.ReadValue<T>();
                 listener?.Invoke(true, data);
@@ -36,6 +40,10 @@ public class InputManager
         var action = InputSystem.actions.FindAction(name);
         if (action != null)
         {
+            action.started += (x) => {
+                listener?.Invoke(true);
+            };
+
             action.performed += (x) => {
                 listener?.Invoke(true);
             };

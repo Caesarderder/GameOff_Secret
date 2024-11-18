@@ -3,8 +3,8 @@ using UnityEngine;
 public interface IPlayerInteractable
 {
     float Priority();
-    void EnterTrigger(Player player);
+    void EnterTrigger(Transform tran);
     void Interact();
-    void ExitTrigger(Player player);
+    void ExitTrigger(Transform tran);
 }
 

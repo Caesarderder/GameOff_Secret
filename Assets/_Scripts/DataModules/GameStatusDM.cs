@@ -1,12 +1,4 @@
 using UnityEngine;
-using static UnityEngine.Rendering.VolumeComponent;
-
-public enum EWorldType
-{
-    None=-1,
-    KW=0,
-    CW=1,
-}
 
 public enum EGameState
 {
