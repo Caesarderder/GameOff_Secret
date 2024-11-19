@@ -8,7 +8,7 @@ public class InputManager
     public static string INTERACT = "Interact";
     public static string CURSORLEFT = "CursorLeft";
     public static string CURSORRIGHT = "CursorRight";
-    public static string DROP = "Drop"; 
+    public static string ESC= "Esc";
 
     // 用于绑定并监听值类型的输入（比如鼠标坐标或其他结构体）
     public void InputValueBinding<T>(string name, Action<bool, T> listener) where T : struct
@@ -44,9 +44,6 @@ public class InputManager
                 listener?.Invoke(true);
             };
 
-            action.performed += (x) => {
-                listener?.Invoke(true);
-            };
 
             action.canceled += (x) => {
                 listener?.Invoke(false);

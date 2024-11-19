@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerA : Player
+public class APlayer : Player
 {
     InputDataModule inputDataModule;
     Camera _camera;
@@ -9,25 +8,35 @@ public class PlayerA : Player
 
     //Test
     Vector3 localDirection;
-    [SerializeField]
-    GameObject test;
+    //[SerializeField]
+    //GameObject test;
 
     protected override void Awake()
     {
         base.Awake();
+        BelongWorld = EWorldType.A;
         inputDataModule = DataModule.Resolve<InputDataModule>();
         Manager<InputManager>.Inst.InputButtonBinding(InputManager.INTERACT, (isPress) =>
         {
-            if ( isPress )
+            if ( isPress &&CanInput)
                 OnInteractInput();
-
         });
+
         Manager<InputManager>.Inst.InputValueBinding<Vector2>(InputManager.MOVE,(isPress, data) =>
         {
-            ProcessMoveInput(data);
-            //SetFaceRotation(_moveInput.normalized );
+            if(CanInput)
+                ProcessMoveInput(data);
         });
+
     }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        
+    }
+    
+   
 
     public void Init(Camera camera)
     {
@@ -42,7 +51,7 @@ public class PlayerA : Player
         {
             Vector3 local3D = _movement.PlanetCenter.position + _camera.transform.up * _moveInput.y * 10f + _camera.transform.right * _moveInput.x * 10f;
 
-            test.transform.up = local3D - test.transform.position;
+            //test.transform.up = local3D - test.transform.position;
             // ��������������ҵ��ƶ��ٶ�
             _movement.SetFaceTargetPos(local3D);
             _movement.SetFaceMoveTargetSpeed(MoveSpeed);
@@ -56,10 +65,7 @@ public class PlayerA : Player
         }
 
     }
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-    }
+
 
     protected override void Update()
     {

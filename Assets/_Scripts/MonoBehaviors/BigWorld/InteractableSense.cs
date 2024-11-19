@@ -5,28 +5,29 @@ using UnityEngine;
 
 public class InteractableSense : MonoBehaviour
 {
-    List<IPlayerInteractable> _iteractables=new(capacity:2);
+    public List<IPlayerInteractable> Iteractables=new(capacity:2);
 
     public Action<IPlayerInteractable,bool> Listener;
 
     public bool TryGetInteractable(out IPlayerInteractable interactable)
     {
-        _iteractables.Sort(Order);
-        if(_iteractables.Count>0)
+        Iteractables.Sort(Order);
+        if(Iteractables.Count>0)
         {
-            interactable= _iteractables[0];
+            interactable= Iteractables[0];
             return true;
         }
         interactable = default;
         return false;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<IPlayerInteractable>(out var inter))
         {
-            if(!_iteractables.Contains(inter))
+            if(!Iteractables.Contains(inter))
             {
-                _iteractables.Add(inter);
+                Iteractables.Add(inter);
                 Listener.Invoke(inter,true);
             }    
         }
@@ -36,9 +37,9 @@ public class InteractableSense : MonoBehaviour
     {
         if(other.TryGetComponent<IPlayerInteractable>(out var inter))
         {
-            if(_iteractables.Contains(inter))
+            if(Iteractables.Contains(inter))
             {
-                _iteractables.Remove(inter);
+                Iteractables.Remove(inter);
                 Listener.Invoke(inter, false);
             }    
         }

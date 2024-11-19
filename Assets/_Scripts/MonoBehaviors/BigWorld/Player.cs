@@ -6,19 +6,20 @@ public class Player : MonoBehaviour
     protected InteractableSense _sense;
 
     public float MoveSpeed=5f;
-    public Vector3 Dir;
-    public bool IsMove;
-    public bool InteractInput;
+    public bool CanInput;
+    public EWorldType BelongWorld;
 
     protected virtual void Awake()
     {
         _movement=GetComponent<KWPlayerPlanetMovement>();
         _sense=GetComponentInChildren<InteractableSense>();
         _sense.Listener += OnInteractableTrigger;
+        EventAggregator.Subscribe<ChangeGameStateEvent>(OnGameStateChange);
     }
     protected virtual void OnDestroy()
     {
         _sense.Listener -= OnInteractableTrigger;
+        EventAggregator.Unsubscribe<ChangeGameStateEvent>(OnGameStateChange);
         
     }
 
@@ -50,5 +51,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnGameStateChange(ChangeGameStateEvent evt)
+    {
+        if(BelongWorld==evt.WorldType)
+        {
+            switch ( evt.GameMode )
+            {
+                case EGameMode.Normal:
+                    CanInput = true;
+                    break;
+                case EGameMode.RunePanel:
+                    CanInput = false;
+                    _movement.Stop();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
 }

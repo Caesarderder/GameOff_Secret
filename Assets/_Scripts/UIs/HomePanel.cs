@@ -41,7 +41,6 @@ public class HomePanel : ViewBase
             _=Manager<ActManager>.Inst.LoadAct<KeyboardWorldAct>();
             _=Manager<ActManager>.Inst.LoadAct<CursorWorldAct>();
 
-            _= Manager<UIManager>.Inst.ShowUI<GamePlayPanel>();  //¶¯Ì¬¼ÓÔØGamePlayPanel
         });
 
 

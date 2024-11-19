@@ -51,7 +51,7 @@ public class GamePlayDM : DataModule
 
     #endregion
 
-    #region Method
+    #region Bag
 
     //Bag
     //0:没有 other:itemid
@@ -94,6 +94,22 @@ public class GamePlayDM : DataModule
         _intent.AddInt(key,(int)state);
     }
 
+
+    #endregion
+
+    #region GameRunePanel
+    public void SetGameRunePanel(GameRunePanel panel)
+    {
+        _intent.AddObject("GameRunePanel", panel);
+    }
+    public GameRunePanel GetGameRunePanel()
+    {
+        return _intent.GetObject("GameRunePanel") as GameRunePanel;
+    }
+    public void RemoveGameRunePanel()
+    {
+        _intent.RemoveObject("GameRunePanel");
+    }
 
     #endregion
 }

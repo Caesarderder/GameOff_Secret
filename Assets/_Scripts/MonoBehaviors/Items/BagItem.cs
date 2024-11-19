@@ -81,6 +81,7 @@ public class BagItem:Item ,IPlayerInteractable
             //�ӱ����Ƴ�
             dm.TryRemoveItem(BelongWorld);
             Debug.Log(BelongWorld + "  " + ItemId +"remove to bag");
+            _state = EBagItemState.Normal;
 
             //���ֲ�
             //���ڵ���

@@ -5,6 +5,11 @@ public enum EGameState
     Home,
     GamePlay1,
 }
+public enum EGameMode
+{
+    Normal,
+    RunePanel,
+}
 
 public class GameStatusDM: DataModule
 {

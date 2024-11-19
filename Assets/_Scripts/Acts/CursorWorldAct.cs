@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine.InputSystem.XR;
 public class CursorWorldAct : WorldAct
 {
-    PlayerB PlayerB => Player as PlayerB;
+    BPlayer PlayerB => Player as BPlayer;
     // �����ҵ����
     public Camera rightCamera;
 
@@ -12,7 +12,7 @@ public class CursorWorldAct : WorldAct
     {
         PlanetIndex = 2;
         await base.OnLoad();
-        Player = await Manager<ResManager>.Inst.LoadGo<PlayerB>(ResManager.CWPlayer, tran_entity);
+        Player = await Manager<ResManager>.Inst.LoadGo<BPlayer>(ResManager.CWPlayer, tran_entity);
         Player.SetPlanetCenter(Planet.transform);
         // ��ȡ�����ҵ����
         rightCamera = Planet.GetComponentInChildren<Camera>();

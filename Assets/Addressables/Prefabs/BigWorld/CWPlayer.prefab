@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5509261939846311953}
   - component: {fileID: 1947927390071644598}
   - component: {fileID: 8017318963386861087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 1307841114362399720}
   - component: {fileID: 2952553886013733777}
   - component: {fileID: 648917356871397935}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InteractableCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 8817142749570266722}
   - component: {fileID: 8815972893219076366}
   - component: {fileID: 3877463536602635447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 4551404826019224468}
   - component: {fileID: 65108148863091812}
   - component: {fileID: 4979592674618990955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: re
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8921048688029819625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: groudcheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,8 +440,8 @@ GameObject:
   - component: {fileID: 6460011286207852142}
   - component: {fileID: 1040242387397235326}
   - component: {fileID: 3024984435827416077}
-  - component: {fileID: 1978896020779320520}
-  m_Layer: 0
+  - component: {fileID: 2715999223039284285}
+  m_Layer: 7
   m_Name: CWPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ MonoBehaviour:
   TestRotate: 20
   PlanetCenter: {fileID: 0}
   IsTargetMoving: 0
---- !u!114 &1978896020779320520
+--- !u!114 &2715999223039284285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -618,10 +618,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8850821823328942626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd7c772fd9c5034c94924955d774bc7, type: 3}
+  m_Script: {fileID: 11500000, guid: c38e8584a6fa5004091be5042377c731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 0.5
   Dir: {x: 0, y: 0, z: 0}
   IsMove: 0
   InteractInput: 0

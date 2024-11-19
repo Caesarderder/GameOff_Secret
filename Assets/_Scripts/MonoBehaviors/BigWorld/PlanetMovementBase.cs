@@ -110,7 +110,14 @@ public class PlanetMovementBase : MonoBehaviour
     {
         IsTargetMoving = true;
         _faceTargetPos= pos;
-    }    
+    }
+    
+    public void Stop()
+    {
+        SetFaceMoveTargetSpeed(0f);
+        SetFaceTargetPos(_entity.position);
+        SetFaceRotation(_entity.transform.forward);
+    }
 
     public void SetFaceRotation(Vector3 dir)
     {
@@ -212,7 +219,6 @@ public class PlanetMovementBase : MonoBehaviour
         {
             if(Vector3.Angle(_faceTargetPos-PlanetCenter.position,-_gravityDir)<2f)
             {
-                Debug.Log("µ½´ï£¡");
                 IsTargetMoving = false;
                 _faceCurSpeed = 0f;
             }
