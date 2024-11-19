@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class KWPlayer : Player
+public class PlayerA : Player
 {
     InputDataModule inputDataModule;
     Camera _camera;
@@ -43,11 +43,10 @@ public class KWPlayer : Player
             Vector3 local3D = _movement.PlanetCenter.position + _camera.transform.up * _moveInput.y * 10f + _camera.transform.right * _moveInput.x * 10f;
 
             test.transform.up = local3D - test.transform.position;
-            // µ÷Õû·½Ïò²¢ÉèÖÃÍæ¼ÒµÄÒÆ¶¯ËÙ¶È
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
             _movement.SetFaceTargetPos(local3D);
             _movement.SetFaceMoveTargetSpeed(MoveSpeed);
             _movement.SetFaceRotation(local3D);
-            Debug.Log("MOve To" + local3D);
         }
         else
         {

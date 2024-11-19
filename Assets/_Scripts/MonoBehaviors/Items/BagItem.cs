@@ -7,7 +7,7 @@ public enum EBagItemState
 }
 public class BagItem:Item ,IPlayerInteractable
 {
-    //Ë«»÷È·ÈÏ»úÖÆ
+    //Ë«ï¿½ï¿½È·ï¿½Ï»ï¿½ï¿½ï¿½
     float _clickTime;
     EBagItemState _state=EBagItemState.Normal;
 
@@ -28,28 +28,28 @@ public class BagItem:Item ,IPlayerInteractable
 
             var dm = DataModule.Resolve<GamePlayDM>();
 
-            //µ±Ç°±³°üÓÐÎïÆ·
-            if ( dm.GetCurBagItem(BelongWorld) == 0 )
+            //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
+            if ( dm.GetCurBagItem(BelongWorld) != 0 )
             {
                 if ( _clickTime + 0.5f > Time.time )
                 {
-                    //¶ªÆúµ±Ç°±³°üÎïÆ·
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
                     if ( dm.TryRemoveItem(BelongWorld) )
                     {
-                        //³É¹¦¶ªÆú,Ê°È¡Õâ¸ö
+                        //ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½,Ê°È¡ï¿½ï¿½ï¿½
                         PickUp();
                     }
                 }
                 else
                 {
-                    //ÐèÒª0.5sÄÚË«»÷ÒÔÈ·ÈÏÊ°È¡
+                    //ï¿½ï¿½Òª0.5sï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê°È¡
                     _clickTime = Time.time;
                     return;
                 }
             }
             else
             {
-                //µ±Ç°±³°üÃ»ÓÐÎïÆ·£¬Ö±½ÓÊ°È¡Õâ¸öitem
+                //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ö±ï¿½ï¿½Ê°È¡ï¿½ï¿½ï¿½item
                 PickUp();
             }
         }
@@ -58,38 +58,42 @@ public class BagItem:Item ,IPlayerInteractable
     protected virtual void PickUp()
     {
         var dm = DataModule.Resolve<GamePlayDM>();
-        //Êý¾Ý²ã
-        //·ÅÈë±³°ü
+        //ï¿½ï¿½ï¿½Ý²ï¿½
+        //ï¿½ï¿½ï¿½ë±³ï¿½ï¿½
         if(dm.TryAddItem(this))
         {
             _state = EBagItemState.InBag;
+            Debug.Log(BelongWorld + "  " + ItemId +"add to bag");
         }
         
        
 
-        //±íÏÖ²ã
-        //¸úËæÍæ¼Ò
+        //ï¿½ï¿½ï¿½Ö²ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
     public virtual void DorpDown()
     {
         if(_state==EBagItemState.InBag)
         {
-
             var dm = DataModule.Resolve<GamePlayDM>();
-            //Êý¾Ý²ã
-            //´Ó±³°üÒÆ³ý
+            //ï¿½ï¿½ï¿½Ý²ï¿½
+            //ï¿½Ó±ï¿½ï¿½ï¿½ï¿½Æ³ï¿½
             dm.TryRemoveItem(BelongWorld);
+            Debug.Log(BelongWorld + "  " + ItemId +"remove to bag");
 
-            //±íÏÖ²ã
-            //¶ªÔÚµØÉÏ
+            //ï¿½ï¿½ï¿½Ö²ï¿½
+            //ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½
         }
     }
 
     public virtual float Priority()
     {
-        if(_interactor != null)
-        return Vector3.SqrMagnitude(transform.position-_interactor.position);
+        if (_interactor != null)
+        {
+            return Vector3.SqrMagnitude(transform.position-_interactor.position);
+        }
+        Debug.Log(ItemId+"  "+-1);
         return -1;
     }
 }

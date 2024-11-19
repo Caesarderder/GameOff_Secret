@@ -1179,6 +1179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigPlanet_21
       objectReference: {fileID: 0}
+    - target: {fileID: 1859133594099493479, guid: 5a2c67611e53140458b7b9373a7d9614, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8200565942779387740, guid: 5a2c67611e53140458b7b9373a7d9614, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.6682487
@@ -1412,6 +1416,10 @@ PrefabInstance:
     - target: {fileID: 1592709272742092095, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
       propertyPath: m_Name
       value: BigPlanet_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859133594099493479, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1941568983002367349, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
       propertyPath: m_IsActive

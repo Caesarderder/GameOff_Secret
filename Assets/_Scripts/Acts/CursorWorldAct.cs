@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using UnityEngine.InputSystem.XR;
 public class CursorWorldAct : WorldAct
 {
-    CWPlayer CWPlayer => Player as CWPlayer;
-    // Êó±êÍæ¼ÒµÄÏà»ú
+    PlayerB PlayerB => Player as PlayerB;
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½
     public Camera rightCamera;
 
 
@@ -12,11 +12,11 @@ public class CursorWorldAct : WorldAct
     {
         PlanetIndex = 2;
         await base.OnLoad();
-        Player = await Manager<ResManager>.Inst.LoadGo<CWPlayer>(ResManager.CWPlayer, tran_entity);
+        Player = await Manager<ResManager>.Inst.LoadGo<PlayerB>(ResManager.CWPlayer, tran_entity);
         Player.SetPlanetCenter(Planet.transform);
-        // »ñÈ¡Êó±êÍæ¼ÒµÄÏà»ú
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½
         rightCamera = Planet.GetComponentInChildren<Camera>();
-        CWPlayer.Init(rightCamera);
+        PlayerB.Init(rightCamera);
           
     }
     

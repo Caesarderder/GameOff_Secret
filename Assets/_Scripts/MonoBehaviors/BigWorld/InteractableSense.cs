@@ -11,6 +11,7 @@ public class InteractableSense : MonoBehaviour
 
     public bool TryGetInteractable(out IPlayerInteractable interactable)
     {
+        _iteractables.Sort(Order);
         if(_iteractables.Count>0)
         {
             interactable= _iteractables[0];
@@ -42,14 +43,11 @@ public class InteractableSense : MonoBehaviour
             }    
         }
     }
-    private void Update()
-    {
-        _iteractables.Sort(Order);
-    }
+
 
     public int Order(IPlayerInteractable a,IPlayerInteractable b)
     {
-        return a.Priority()-b.Priority()<0?1:0;
+        return a.Priority()-b.Priority()<0?-1:1;
     }
 
 

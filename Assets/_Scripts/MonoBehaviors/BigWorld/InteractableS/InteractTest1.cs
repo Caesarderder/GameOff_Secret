@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class InteractTest1 : MonoBehaviour, IPlayerInteractable
 {
-    KWPlayer player;
+    PlayerA player;
     private void Awake()
     {
         EventAggregator.Subscribe<InteractTest2Event>(OnMove);

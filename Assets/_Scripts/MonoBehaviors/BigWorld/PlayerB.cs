@@ -1,12 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CWPlayer : Player
+public class PlayerB : Player
 {
-    private BagManager bagManager;  // ÉùÃ÷Ò»¸öË½ÓÐ×Ö¶Î bagManager
+    private BagManager bagManager;  // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ë½ï¿½ï¿½ï¿½Ö¶ï¿½ bagManager
 
-    private float lastClickTime = 0f;  // ÉÏÒ»´Îµã»÷µÄÊ±¼ä
-    private float doubleClickThreshold = 0.3f;  // Ë«»÷¼ä¸ôµÄ×î´óÊ±¼ä£¨µ¥Î»£ºÃë£©
+    private float lastClickTime = 0f;  // ï¿½ï¿½Ò»ï¿½Îµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    private float doubleClickThreshold = 0.3f;  // Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¨ï¿½ï¿½Î»ï¿½ï¿½ï¿½ë£©
 
     Camera _cam;
     public override void OnInteractableTrigger(IPlayerInteractable interactable, bool isEnter)
@@ -23,7 +23,7 @@ public class CWPlayer : Player
     {
         _cam = cam;
 
-        // ³õÊ¼»¯Íæ¼Ò±³°ü
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½
         Intent playerIntent = Intent.Get();
         bagManager = new BagManager(playerIntent);
     }
@@ -39,30 +39,30 @@ public class CWPlayer : Player
                   }
 
               });
-        // °ó¶¨Êó±ê×ó¼üµã»÷ÊÂ¼þ£¬ÓÃÓÚÊ°È¡ÎïÆ·
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê°È¡ï¿½ï¿½Æ·
         Manager<InputManager>.Inst.InputButtonBinding("MouseLeft", x =>
         {
-            if (x)  // °´ÏÂÊó±ê×ó¼üÊ±
+            if (x)  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
             {
                 TryPickUpItem();
             }
         });
 
-        // °ó¶¨¶ªÆú¹¦ÄÜ
+        // ï¿½ó¶¨¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Manager<InputManager>.Inst.InputButtonBinding(InputManager.DROP, x =>
             {
-                if (x)  // Ë«»÷Êó±ê×ó¼ü
+                if (x)  // Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     float timeSinceLastClick = Time.time - lastClickTime;
 
-                    // Èç¹ûÁ½´Îµã»÷Ö®¼äµÄÊ±¼äÐ¡ÓÚË«»÷ãÐÖµ£¬ÔòÊÓÎªË«»÷
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½Ö®ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ð¡ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªË«ï¿½ï¿½
                     if (timeSinceLastClick <= doubleClickThreshold)
                     {
-                        DropItem();  // Ö´ÐÐ¶ªÆúÎïÆ·²Ù×÷
+                        DropItem();  // Ö´ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
                         Debug.Log("Double click detected. Item dropped.");
                     }
 
-                    // ¸üÐÂÉÏÒ»´Îµã»÷µÄÊ±¼ä
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
                     lastClickTime = Time.time;
                 }
             });
@@ -70,21 +70,22 @@ public class CWPlayer : Player
 
     void OnMoveCLick()
     {
-        if ( Input.mousePosition.x > 960)
+        var screenX= Screen.width;
+        var screenY= Screen.height;
+        Debug.Log(screenX);
+        if ( Input.mousePosition.x > screenX/2)
         {
-            // »ñÈ¡Êó±êÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ²¢µ÷ÕûÎªÓÒ°ëÆÁ×ø±ê
-            Vector3 localPos = Input.mousePosition - Vector3.right * 960f;
+            // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½Ïµï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Vector3 localPos = Input.mousePosition - Vector3.right * screenX/2;
 
-            // Ê¹ÓÃÓÒ²àÏà»ú´Óµã»÷Î»ÖÃ·¢ÉäÉäÏß
+            // Ê¹ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Î»ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Ray ray = _cam.ScreenPointToRay(localPos);
 
-            // ÉäÏß¼ì²âÓë3DÎïÆ·µÄ½»»¥
+            // ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½3Dï¿½ï¿½Æ·ï¿½Ä½ï¿½ï¿½ï¿½
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.Log("yes");
                 if ( hit.transform.tag == "Ground" )
                 {
-                    Debug.Log("Move");
                     _movement.SetFaceTargetPos(hit.point); 
                     _movement.SetFaceRotation(hit.point); 
                     _movement.SetFaceMoveTargetSpeed(MoveSpeed); 
@@ -96,16 +97,16 @@ public class CWPlayer : Player
 
     private void TryPickUpItem()
     {
-        // ÉäÏß¼ì²âÊÇ·ñÓÐÎïÆ·¿ÉÊ°È¡
+        // ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ê°È¡
         if (Input.mousePosition.x > 960)
         {
-            // »ñÈ¡Êó±êÔÚÆÁÄ»ÉÏµÄÎ»ÖÃ²¢µ÷ÕûÎªÓÒ°ëÆÁ×ø±ê
+            // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½Ïµï¿½Î»ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector3 localPos = Input.mousePosition - Vector3.right * 960f;
 
-            // Ê¹ÓÃÓÒ²àÏà»ú´Óµã»÷Î»ÖÃ·¢ÉäÉäÏß
+            // Ê¹ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Î»ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Ray ray = _cam.ScreenPointToRay(localPos);
 
-            // ÉäÏß¼ì²âÓë3DÎïÆ·µÄ½»»¥
+            // ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½3Dï¿½ï¿½Æ·ï¿½Ä½ï¿½ï¿½ï¿½
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log("yes");
@@ -116,7 +117,7 @@ public class CWPlayer : Player
                     _movement.SetFaceRotation(hit.point);
                     _movement.SetFaceMoveTargetSpeed(MoveSpeed);
                 }
-                // ¿É±»Ê°È¡µÄÎïÆ·
+                // ï¿½É±ï¿½Ê°È¡ï¿½ï¿½ï¿½ï¿½Æ·
                 if (hit.transform.tag == "PickupItem")
                 {
                     GameObject item = hit.transform.gameObject;
@@ -135,11 +136,11 @@ public class CWPlayer : Player
     }
     private void DropItem()
     {
-        // ´Ó±³°üÖÐÒÆ³ýÎïÆ·²¢¶ªÆúµ½Íæ¼ÒÇ°·½
+        // ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
         GameObject item = bagManager.RemoveItem();
         if (item != null)
         {
-            item.transform.position = transform.position + transform.forward; // ¶ªÆúÔÚÍæ¼ÒÇ°·½
+            item.transform.position = transform.position + transform.forward; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
             Debug.Log($"{item.name} dropped!");
         }
     }

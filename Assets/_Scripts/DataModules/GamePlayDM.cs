@@ -16,6 +16,7 @@ public class GamePlayDM : DataModule
     public override void OnCreate()
     {
         base.OnCreate();
+        _intent = Intent.Get();
         EventAggregator.Subscribe<SActLoadEvent>(OnEnterGame);
         EventAggregator.Subscribe<SActUnloadedEvent>(OnExitGame);
     }
@@ -30,6 +31,11 @@ public class GamePlayDM : DataModule
     {
         if ( evt.ActName == typeof(KeyboardWorldAct).Name )
         {
+            if (_intent != null)
+            {
+                _intent.Clear();
+                _intent=null;
+            }
             _intent = Intent.Get();
         }
     }
@@ -70,15 +76,13 @@ public class GamePlayDM : DataModule
 
     public bool TryRemoveItem(EWorldType world)
     {
-        if ( GetCurBagItem(world)!=0)
-        {
             if(_intent.TryGetValue(Bag + world.ToString(),out BagItem bagItem))
             {
+                _intent.AddObject(Bag + world.ToString(),null);
                 bagItem.DorpDown();
+                _intent.AddInt(Bag + world.ToString(), 0);
+                return true;
             }
-            _intent.AddInt(Bag + world.ToString(), 0);
-            return true;
-        }
         return false;
     }
 

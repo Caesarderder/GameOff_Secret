@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InteractTest2: MonoBehaviour, IPlayerInteractable
 {
-    KWPlayer player;
+    PlayerA player;
     private void Awake()
     {
         EventAggregator.Subscribe<InteractTest1Event>(OnScale);
