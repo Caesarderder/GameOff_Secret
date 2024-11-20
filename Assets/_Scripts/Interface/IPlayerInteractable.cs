@@ -8,3 +8,8 @@ public interface IPlayerInteractable
     void ExitTrigger(Transform tran);
 }
 
+public interface IWorldObject
+{
+    void Init();
+    EWorldType WorldType { get; set; }
+}

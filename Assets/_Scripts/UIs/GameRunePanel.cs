@@ -6,7 +6,6 @@ public class GameRunePanel : ViewBase
     GameStatusDM _gameStatusDM;
     int _curLevel;
 
-    [SerializeField]
     GameRuneWidget
         widget_A,
         widget_B 
@@ -18,7 +17,7 @@ public class GameRunePanel : ViewBase
     {
 
     }
-    public override void Load()
+    public override async void Load()
     {
         base.Load();
         _gamePlayDM = DataModule.Resolve<GamePlayDM>();
@@ -27,7 +26,9 @@ public class GameRunePanel : ViewBase
         _gameStatusDM = DataModule.Resolve<GameStatusDM>();
         _curLevel=_gameStatusDM.CurSelectedLevel;
 
+        widget_A = await Manager<ResManager>.Inst.LoadGo<GameRuneWidget>($"AWidget{_curLevel}",transform);
         widget_A.Init(EWorldType.A);
+        widget_B= await Manager<ResManager>.Inst.LoadGo<GameRuneWidget>($"BWidget{_curLevel}",transform);
         widget_B.Init(EWorldType.B);
     }
 

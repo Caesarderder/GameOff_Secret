@@ -3,11 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(GroundCollisionSense))]
 public class PlanetMovementBase : MonoBehaviour
 {
-    public float maxGravitySpeed = 5f;
-    public float GravityConst = 9.8f;
-    public float SpeedChangeRate = 0.6f;
-    public float RotateSpeed= 0.5f;
-    public float TestRotate= 20f;
+    public float maxGravitySpeed =3f;
+    public float GravityConst = 5f;
+    public float SpeedChangeRate = 1f;
+    public float RotateSpeed= 10f;
 
     public Transform PlanetCenter;
     protected Transform _entity;
@@ -15,7 +14,9 @@ public class PlanetMovementBase : MonoBehaviour
     protected GroundCollisionSense _groundSense;
     protected Rigidbody _rb;
 
-    protected Vector3 _tempVelocity;
+    protected Vector3 _tempFaceVelocity;
+    protected Vector3 _tempGravityVelocity;
+    public Vector3 Velocity=>_tempFaceVelocity+_tempGravityVelocity;
     #region Gravity
 
     protected bool
@@ -86,10 +87,10 @@ public class PlanetMovementBase : MonoBehaviour
         if(IsTargetMoving)
         {
             FixFaceMoveDir();
-            FaceMove();
+            CaculateFaceMoveSpeed();
         }
         FaceRotate();
-        _rb.linearVelocity = _tempVelocity;
+        FaceMove();
     }
     void FixVelocity()
     {
@@ -168,7 +169,7 @@ public class PlanetMovementBase : MonoBehaviour
         {
             var velocity = _rb.linearVelocity;
 
-            _tempVelocity = -_lastGravityDir*_gravitySpeed;
+            _tempGravityVelocity = -_lastGravityDir*_gravitySpeed;
         }
 
         _lastGravityDir = _gravityDir;
@@ -188,7 +189,7 @@ public class PlanetMovementBase : MonoBehaviour
 
     }
 
-    protected virtual void FaceMove()
+    protected virtual void CaculateFaceMoveSpeed()
     {
 
         float speedOffset = 0.1f;
@@ -224,9 +225,13 @@ public class PlanetMovementBase : MonoBehaviour
             }
         }    
 
-        _tempVelocity += _faceMoveDir3.normalized*_faceCurSpeed;
+        _tempFaceVelocity = _faceMoveDir3.normalized*_faceCurSpeed;
     }
 
+    protected virtual void FaceMove()
+    {
+        _rb.linearVelocity = _tempFaceVelocity+_tempFaceVelocity;
+    }
     private void OnDrawGizmos()
     {
         if(_entity &&PlanetCenter)

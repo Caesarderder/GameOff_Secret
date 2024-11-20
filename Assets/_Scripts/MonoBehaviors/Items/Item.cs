@@ -16,7 +16,7 @@ public enum EItemState
 }
 
 
-public class Item:MonoBehaviour
+public class Item:MonoBehaviour,IWorldObject
 {
     [HideInInspector]
     public EWorldType BelongWorld;
@@ -24,10 +24,24 @@ public class Item:MonoBehaviour
 
     public int ItemId;
 
-    public virtual void OnEnable()
+    public EWorldType WorldType { get => BelongWorld; set => BelongWorld=value; }
+    public void Init()
     {
+        var world= GetComponentInParent<WorldAct>();
+        if ( world )
+        {
+            WorldType = world.WorldType;
+        }
+    }
+    private void Start()
+    {
+        Init();
         var dm=DataModule.Resolve<GamePlayDM>();
         dm.SetItemState(this,EItemState.Exist);
+    }
+
+    public virtual void OnEnable()
+    {
     }
 
     public void SetInteractor(Transform inter)

@@ -7,7 +7,6 @@ public class BPlayer : Player
     private float lastClickTime = 0f;  // ��һ�ε����ʱ��
     private float doubleClickThreshold = 0.3f;  // ˫����������ʱ�䣨��λ���룩
 
-    Camera _cam;
     public override void OnInteractableTrigger(IPlayerInteractable interactable, bool isEnter)
     {
         base.OnInteractableTrigger(interactable, isEnter);
@@ -18,18 +17,11 @@ public class BPlayer : Player
         base.OnInteractInput();
     }
 
-    public void Init(Camera cam)
-    {
-        _cam = cam;
-
-        Intent playerIntent = Intent.Get();
-        bagManager = new BagManager(playerIntent);
-    }
 
     protected override void Awake()
     {
-        base.Awake();
         BelongWorld = EWorldType.B;
+        base.Awake();
         Manager<InputManager>.Inst.InputButtonBinding(InputManager.CURSORRIGHT, x =>
               {
                   if ( x &&CanInput)
@@ -82,7 +74,7 @@ public class BPlayer : Player
             Vector3 localPos = Input.mousePosition - Vector3.right * screenX/2;
 
             // ʹ���Ҳ�����ӵ��λ�÷�������
-            Ray ray = _cam.ScreenPointToRay(localPos);
+            Ray ray = _camera.ScreenPointToRay(localPos);
 
             // ���߼����3D��Ʒ�Ľ���
             if(mask==default)

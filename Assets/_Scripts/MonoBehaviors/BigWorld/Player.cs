@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    protected KWPlayerPlanetMovement _movement;
+    protected PlayerPlanetMovement _movement;
     protected InteractableSense _sense;
+    protected 
+     Camera _camera;
 
     public float MoveSpeed=5f;
     public bool CanInput;
@@ -11,9 +13,12 @@ public class Player : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _movement=GetComponent<KWPlayerPlanetMovement>();
+        CanInput=true;
+        _movement=GetComponent<PlayerPlanetMovement>();
         _sense=GetComponentInChildren<InteractableSense>();
         _sense.Listener += OnInteractableTrigger;
+        _camera = DataModule.Resolve<GamePlayDM>().GetWorld(BelongWorld).Camera;
+
         EventAggregator.Subscribe<ChangeGameStateEvent>(OnGameStateChange);
     }
     protected virtual void OnDestroy()

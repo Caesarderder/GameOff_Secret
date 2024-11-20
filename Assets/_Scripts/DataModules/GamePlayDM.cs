@@ -112,4 +112,24 @@ public class GamePlayDM : DataModule
     }
 
     #endregion
+
+    #region Planet
+    public void SetPlanet(BigWorldPlanet planet)
+    {
+        _intent.AddObject("Planet"+planet.WorldType, planet);
+    }
+    public BigWorldPlanet GetPlanet(EWorldType type)
+    {
+        return _intent.GetObject("Planet"+type) as BigWorldPlanet;
+    }
+
+    public void SetWorld(WorldAct planet)
+    {
+        _intent.AddObject("World"+(int)planet.WorldType, planet);
+    }
+    public WorldAct GetWorld(EWorldType type)
+    {
+        return _intent.GetObject("World"+(int)type) as WorldAct;
+    }
+    #endregion
 }

@@ -606,9 +606,9 @@ MonoBehaviour:
   GravityConst: 5
   SpeedChangeRate: 1
   RotateSpeed: 15
-  TestRotate: 20
   PlanetCenter: {fileID: 0}
   IsTargetMoving: 0
+  ScreenSafeRadius: 450
 --- !u!114 &2715999223039284285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,6 +622,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0.5
-  Dir: {x: 0, y: 0, z: 0}
-  IsMove: 0
-  InteractInput: 0
+  CanInput: 0
+  BelongWorld: 0

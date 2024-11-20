@@ -3,7 +3,6 @@ using UnityEngine;
 public class APlayer : Player
 {
     InputDataModule inputDataModule;
-    Camera _camera;
     Vector2 _moveInput;
 
     //Test
@@ -13,8 +12,8 @@ public class APlayer : Player
 
     protected override void Awake()
     {
-        base.Awake();
         BelongWorld = EWorldType.A;
+        base.Awake();
         inputDataModule = DataModule.Resolve<InputDataModule>();
         Manager<InputManager>.Inst.InputButtonBinding(InputManager.INTERACT, (isPress) =>
         {
@@ -38,11 +37,6 @@ public class APlayer : Player
     
    
 
-    public void Init(Camera camera)
-    {
-        _camera = camera;
-    }
-
     private void ProcessMoveInput(Vector2 data)
     {
         _moveInput = data;
@@ -63,8 +57,8 @@ public class APlayer : Player
             _movement.SetFaceMoveTargetSpeed(0f);
             _movement.DisableFaceRotation();
         }
-
     }
+
 
 
     protected override void Update()

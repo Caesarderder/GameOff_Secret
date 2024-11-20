@@ -37,9 +37,11 @@ public class HomePanel : ViewBase
         {
             DataModule.Resolve<TestDataModule>().OnTestDataChange(int.Parse(x));
         }));
-        btn_start.OnClickAsObservable().Subscribe(x => { 
-            _=Manager<ActManager>.Inst.LoadAct<KeyboardWorldAct>();
-            _=Manager<ActManager>.Inst.LoadAct<CursorWorldAct>();
+        btn_start.OnClickAsObservable().Subscribe(async x => {
+            await Manager<UIManager>.Inst.ShowUI<GamePlayPanel>();  //动态加载GamePlayPanel
+            Manager<UIManager>.Inst.ShowUI<GameRunePanel>();  //动态加载GameRunePanel
+            _ = Manager<ActManager>.Inst.LoadAct<KeyboardWorldAct>();
+            _ = Manager<ActManager>.Inst.LoadAct<CursorWorldAct>();
 
         });
 
