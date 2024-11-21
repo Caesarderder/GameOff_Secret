@@ -860,11 +860,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1600280382 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7422392259158053108, guid: 5a2c67611e53140458b7b9373a7d9614, type: 3}
-  m_PrefabInstance: {fileID: 1396028719}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1817730684
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e1bdcc7527c4441b2959d3e4bce757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightCamera: {fileID: 1600280382}
+  rightCamera: {fileID: 0}
   rightRawImage: {fileID: 369860957}
   Go1: {fileID: 1560361918}
   Go2: {fileID: 1102101603}

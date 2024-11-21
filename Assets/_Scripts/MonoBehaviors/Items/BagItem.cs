@@ -9,7 +9,7 @@ public class BagItem:Item ,IPlayerInteractable
 {
     //˫��ȷ�ϻ���
     float _clickTime;
-    EBagItemState _state=EBagItemState.Normal;
+    protected EBagItemState _state=EBagItemState.Normal;
 
     public virtual void EnterTrigger(Transform tran)
     {
