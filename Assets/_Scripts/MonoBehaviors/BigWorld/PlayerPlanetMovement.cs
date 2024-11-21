@@ -46,14 +46,19 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
     {
         if(CheckScreenSafe())
         {
-            //Íæ¼ÒÒÆ¶¯
+            //ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
             _rb.linearVelocity = Velocity;
         }
         else
         {
 
             _rb.linearVelocity = _tempGravityVelocity;
-            //ÐÇÇòÐý×ª
+            EventAggregator.Publish(new PlanetRoatateEvent()
+            {
+                WorldType = _worldType,
+                RotateAxis =-Vector3.Cross(_faceMoveDir3,_gravityDir).normalized,
+                Intensity= _tempFaceVelocity.magnitude/maxFaceSpeed,
+            });
         }
 
     }
@@ -62,11 +67,11 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
     {
         if(Raycast(out var hit))
         {
-            //ÕÒµ½ÆÁÄ»ÖÐÐÇÇòµÄÖÐÐÄµã
+            //ï¿½Òµï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½
             var center=_camera.WorldToScreenPoint(hit.point); 
             var curPos=_camera.WorldToScreenPoint(_entity.position);
             var curDis = Vector3.Distance(center, curPos);
-            Debug.Log("¾àÀëÖÐÐÄ"+curDis);
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+curDis);
             if ( curDis<=ScreenSafeRadius)
             {
                 return true;
@@ -77,24 +82,24 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
                 Debug.Log(angle);
                 if ( angle<=90f)
                 {
-                    Debug.Log("ÏòÖÐÐÄÒÆ¶¯");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½");
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Î£ÏÕÒÆ¶¯");
+                    Debug.Log("Î£ï¿½ï¿½ï¿½Æ¶ï¿½");
                     return false;
                 }
             }
         }
         else
         {
-            Debug.Log("Î´ÕÒµ½ÐÇÇòÎ£ÏÕÒÆ¶¯");
+            Debug.Log("Î´ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½Æ¶ï¿½");
             return false;
         }
       
 
-        //»ñÈ¡Õâ¸öµãµÄÆÁÄ»×ø±ê
+        //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½
 
     }
     bool Raycast(out RaycastHit hit, float maxDis = 100f)

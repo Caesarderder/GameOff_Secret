@@ -1,21 +1,32 @@
+using System;
 using UnityEngine;
 
 public class BigWorldPlanet : MonoBehaviour
 {
     public Transform _toFixDirGosParent;
     public EWorldType WorldType;
+    public float RotateSpeed=10f;
     
     public virtual void Start()
     {
         FixAllGosDir();
         DataModule.Resolve<GamePlayDM>().SetPlanet(this);
+        EventAggregator.Subscribe<PlanetRoatateEvent>(RotateTick);
     }
 
-    public void AddGosOnEarth(Transform tran)
+    private void OnDestroy()
     {
-        tran.parent = _toFixDirGosParent;
-        FixAllGosDir();
+        EventAggregator.Unsubscribe<PlanetRoatateEvent>(RotateTick);
     }
+
+    void RotateTick(PlanetRoatateEvent evt)
+    {
+        if (WorldType == evt.WorldType)
+        {
+            transform.Rotate(evt.RotateAxis, evt.Intensity*RotateSpeed * Time.deltaTime,Space.World);
+        }
+    }
+    
 
     private void FixAllGosDir()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlanetMovementBase : MonoBehaviour
 {
     public float maxGravitySpeed =3f;
+    public float maxFaceSpeed=1f;
     public float GravityConst = 5f;
     public float SpeedChangeRate = 1f;
     public float RotateSpeed= 10f;
@@ -40,7 +41,7 @@ public class PlanetMovementBase : MonoBehaviour
         _faceCurSpeed,
         _faceCurRotation;
 
-    //Íâ½ç¸³Öµ
+    //ï¿½ï¿½ç¸³Öµ
     protected Vector3
         _faceTargetPos;
     protected float
@@ -48,7 +49,7 @@ public class PlanetMovementBase : MonoBehaviour
     protected Vector3
         _faceTargetDir;
 
-    //ÄÚ²¿¼ÆËã
+    //ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½
     protected Vector2
         _faceMoveLocalDir2;
     protected Vector3
@@ -133,16 +134,16 @@ public class PlanetMovementBase : MonoBehaviour
 
     protected virtual void FixStandDir()
     {
-        // ¼ÆËãÒ»¸ö³¯ÏògravityDirµÄÐý×ª
+        // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gravityDirï¿½ï¿½ï¿½ï¿½×ª
         Quaternion targetRotation = Quaternion.FromToRotation(transform.up, -_gravityDir) * transform.rotation;
 
-        // Ó¦ÓÃÐý×ª
+        // Ó¦ï¿½ï¿½ï¿½ï¿½×ª
         transform.rotation = targetRotation;
     }
 
     protected virtual void FixFaceMoveDir()
     {
-        //ÒÆ¶¯·½Ïò³¯ÏòÄ¿±êÎ»ÖÃ
+        //ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½
         //var localDir= transform.InverseTransformDirection(_faceTargetPos);
         //localDir.z = 0f;
 
@@ -179,7 +180,7 @@ public class PlanetMovementBase : MonoBehaviour
     {
         if ( _isRotating )
         {
-            // »ñÈ¡µ±Ç°µÄ·½Ïò²¢²åÖµµ½Ä¿±ê·½Ïò
+            // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½Ä·ï¿½ï¿½ò²¢²ï¿½Öµï¿½ï¿½Ä¿ï¿½ê·½ï¿½ï¿½
             Vector3 smoothedDirection = Vector3.Lerp(transform.forward, _faceMoveDir3, RotateSpeed* Time.deltaTime);
 
             Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, smoothedDirection) * transform.rotation;
