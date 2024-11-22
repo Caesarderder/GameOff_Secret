@@ -7,10 +7,6 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
     public EWorldType WorldType { get=>_worldType; set { Debug.Log("setWOrld!!!!"); _worldType=value; }  }
 
     Camera _camera;
-    protected override void Awake()
-    {
-        base.Awake();
-    }
     public void Init()
     {
         var world= GetComponentInParent<WorldAct>();
@@ -47,12 +43,12 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
         if(CheckScreenSafe())
         {
             //����ƶ�
-            _rb.linearVelocity = Velocity;
+            Rb.linearVelocity = Velocity;
         }
         else
         {
 
-            _rb.linearVelocity = _tempGravityVelocity;
+            Rb.linearVelocity = _tempGravityVelocity;
             EventAggregator.Publish(new PlanetRoatateEvent()
             {
                 WorldType = _worldType,

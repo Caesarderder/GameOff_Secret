@@ -8,7 +8,6 @@ public class KeyboardWorldAct : WorldAct
         PlanetIndex = 1;
         await base.OnLoad();
         Player = await Manager<ResManager>.Inst.LoadGo<APlayer>(ResManager.KWPlayer, tran_entity);
-        Player.SetPlanetCenter(Planet.transform);
     }
 
     public override async void OnLoaded()

@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class InteractableSense : MonoBehaviour
 {
-    public List<IPlayerInteractable> Iteractables=new(capacity:2);
+    public List<IPlayerInteractable> Interactables=new(capacity:2);
 
     public Action<IPlayerInteractable,bool> Listener;
 
     public bool TryGetInteractable(out IPlayerInteractable interactable)
     {
-        Iteractables.Sort(Order);
-        if(Iteractables.Count>0)
+        Interactables.Sort(Order);
+        if(Interactables.Count>0)
         {
-            interactable= Iteractables[0];
-            return true;
+            foreach (var item in Interactables)
+            {
+                if (item.CanInteract())
+                {
+                    interactable = item;
+                    return true;
+                }
+            }
         }
         interactable = default;
         return false;
@@ -25,9 +31,9 @@ public class InteractableSense : MonoBehaviour
     {
         if(other.TryGetComponent<IPlayerInteractable>(out var inter))
         {
-            if(!Iteractables.Contains(inter))
+            if(!Interactables.Contains(inter))
             {
-                Iteractables.Add(inter);
+                Interactables.Add(inter);
                 Listener.Invoke(inter,true);
             }    
         }
@@ -37,9 +43,9 @@ public class InteractableSense : MonoBehaviour
     {
         if(other.TryGetComponent<IPlayerInteractable>(out var inter))
         {
-            if(Iteractables.Contains(inter))
+            if(Interactables.Contains(inter))
             {
-                Iteractables.Remove(inter);
+                Interactables.Remove(inter);
                 Listener.Invoke(inter, false);
             }    
         }
@@ -48,7 +54,7 @@ public class InteractableSense : MonoBehaviour
 
     public int Order(IPlayerInteractable a,IPlayerInteractable b)
     {
-        return a.Priority()-b.Priority()<0?-1:1;
+        return a.Priority()-b.Priority()<0?1:-1;
     }
 
 

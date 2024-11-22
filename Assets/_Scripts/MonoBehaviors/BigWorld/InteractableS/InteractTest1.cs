@@ -18,6 +18,11 @@ public class InteractTest1 : MonoBehaviour, IPlayerInteractable
         Debug.Log("Enter");
     }
 
+    public bool CanInteract()
+    {
+        return true;
+    }
+
     public void ExitTrigger(Transform tran)
     {
         Debug.Log("Exit");

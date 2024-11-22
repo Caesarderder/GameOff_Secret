@@ -32,10 +32,6 @@ public class Player : MonoBehaviour
     {
     }
 
-    public void SetPlanetCenter(Transform center)
-    {
-        _movement.SetPlanetCenter(center);
-    }
 
     public virtual void OnInteractInput()
     {

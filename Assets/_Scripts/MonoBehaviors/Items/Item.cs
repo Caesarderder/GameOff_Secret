@@ -33,7 +33,7 @@ public class Item:MonoBehaviour,IWorldObject
             WorldType = world.WorldType;
         }
     }
-    private void Start()
+    protected virtual void Start()
     {
         Init();
         var dm=DataModule.Resolve<GamePlayDM>();

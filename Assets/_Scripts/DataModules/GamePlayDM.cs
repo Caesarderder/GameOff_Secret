@@ -116,6 +116,7 @@ public class GamePlayDM : DataModule
     #region Planet
     public void SetPlanet(BigWorldPlanet planet)
     {
+        Debug.Log("SetPlanet!");
         _intent.AddObject("Planet"+planet.WorldType, planet);
     }
     public BigWorldPlanet GetPlanet(EWorldType type)

@@ -18,7 +18,14 @@ public class GroundCollisionSense : MonoBehaviour
     }
     public virtual void GroundCheck()
     {
-        var hit = Physics.Raycast(CheckPos.position, GravityDir, _groundCheckDis, _wahtIsGround);
+        Transform from;
+        if (!CheckPos)
+            from = transform;
+        else
+        {
+            from = CheckPos;
+        }
+        var hit = Physics.Raycast(from.position, GravityDir, _groundCheckDis, _wahtIsGround);
 
         if ( hit )
         {
@@ -31,7 +38,7 @@ public class GroundCollisionSense : MonoBehaviour
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(CheckPos.position, GravityDir * _groundCheckDis);
+        // Gizmos.DrawRay(CheckPos.position, GravityDir * _groundCheckDis);
     }
 
 }

@@ -56,7 +56,7 @@ public class BPlayer : Player
         {
             if(hit.transform.TryGetComponent<IPlayerInteractable>(out var interactable))
             {
-                if ( _sense.Iteractables.Contains(interactable))
+                if ( _sense.Interactables.Contains(interactable))
                 {
                     interactable.Interact();
                 }

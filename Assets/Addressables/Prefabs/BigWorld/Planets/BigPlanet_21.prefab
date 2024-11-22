@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toFixDirGosParent: {fileID: 499175096515614590}
-  WorldType: 0
+  WorldType: 2
   RotateSpeed: 20
 --- !u!54 &6766174969952725955
 Rigidbody:
@@ -278,6 +278,8 @@ GameObject:
   - component: {fileID: 4942886754226102785}
   - component: {fileID: 6568076867706595578}
   - component: {fileID: 3192847765584189634}
+  - component: {fileID: 3268738563339347856}
+  - component: {fileID: 5087643380913100067}
   m_Layer: 8
   m_Name: cube (4)
   m_TagString: Untagged
@@ -415,6 +417,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BelongWorld: 0
   ItemId: 103
+  _followRange: 0.1
+--- !u!114 &3268738563339347856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892505376312111046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9fe384fd57a5c4c98716ba3ca6196b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wahtIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  _groundCheckDis: 0.2
+  IsGrounded: 0
+  GravityDir: {x: 0, y: 0, z: 0}
+  CheckPos: {fileID: 0}
+--- !u!114 &5087643380913100067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892505376312111046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec80543842af89843a820f221d7b4df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGravitySpeed: 3
+  maxFaceSpeed: 1
+  GravityConst: 5
+  SpeedChangeRate: 1
+  RotateSpeed: 10
+  PlanetCenter: {fileID: 0}
+  Rb: {fileID: 0}
+  _canGravityMove: 0
+  _useGravity: 0
+  IsTargetMoving: 0
 --- !u!1 &4666114631946688237
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +689,8 @@ GameObject:
   - component: {fileID: 7948948443645120887}
   - component: {fileID: 7477571553313612531}
   - component: {fileID: 2545062467233516437}
+  - component: {fileID: 9030524565301727700}
+  - component: {fileID: 7194364836406191741}
   m_Layer: 8
   m_Name: cube (3)
   m_TagString: Untagged
@@ -782,6 +828,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BelongWorld: 0
   ItemId: 101
+  _followRange: 0.1
+--- !u!114 &9030524565301727700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672145261914533156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9fe384fd57a5c4c98716ba3ca6196b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wahtIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  _groundCheckDis: 0.2
+  IsGrounded: 0
+  GravityDir: {x: 0, y: 0, z: 0}
+  CheckPos: {fileID: 0}
+--- !u!114 &7194364836406191741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672145261914533156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec80543842af89843a820f221d7b4df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGravitySpeed: 3
+  maxFaceSpeed: 1
+  GravityConst: 5
+  SpeedChangeRate: 1
+  RotateSpeed: 10
+  PlanetCenter: {fileID: 0}
+  Rb: {fileID: 0}
+  _canGravityMove: 0
+  _useGravity: 0
+  IsTargetMoving: 0
 --- !u!1 &8456888584626507712
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +918,6 @@ GameObject:
   - component: {fileID: 8306588222820898040}
   - component: {fileID: 5588583899196808708}
   - component: {fileID: 1835992420789641122}
-  - component: {fileID: 4952932496808101650}
   - component: {fileID: 9146517155503352866}
   m_Layer: 8
   m_Name: cube (1)
@@ -928,20 +1015,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4952932496808101650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8967747652789862586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f441fec0bedcffe41bcdb3a6aa6b4286, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BelongWorld: 0
-  ItemId: 201
 --- !u!54 &9146517155503352866
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7,6 +7,11 @@ public class InteractItem:Item ,IPlayerInteractable
         SetInteractor(tran);
     }
 
+    public virtual bool CanInteract()
+    {
+        return true;
+    }
+
     public virtual void ExitTrigger(Transform tran)
     {
         SetInteractor(tran);

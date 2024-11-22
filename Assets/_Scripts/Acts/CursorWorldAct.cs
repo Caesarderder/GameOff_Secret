@@ -11,7 +11,6 @@ public class CursorWorldAct : WorldAct
         PlanetIndex = 2;
         await base.OnLoad();
         Player = await Manager<ResManager>.Inst.LoadGo<BPlayer>(ResManager.CWPlayer, tran_entity);
-        Player.SetPlanetCenter(Planet.transform);
     }
     
 

@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(GroundCollisionSense))]
-public class PlanetMovementBase : MonoBehaviour
+public class PlanetMovementBase : MonoBehaviour ,IWorldObject
 {
     public float maxGravitySpeed =3f;
     public float maxFaceSpeed=1f;
@@ -13,20 +15,36 @@ public class PlanetMovementBase : MonoBehaviour
     protected Transform _entity;
 
     protected GroundCollisionSense _groundSense;
-    protected Rigidbody _rb;
+     public  Rigidbody Rb;
 
     protected Vector3 _tempFaceVelocity;
     protected Vector3 _tempGravityVelocity;
     public Vector3 Velocity=>_tempFaceVelocity+_tempGravityVelocity;
     #region Gravity
 
-    protected bool
+    public bool
         _canGravityMove,
         _useGravity;
     protected float
         _gravitySpeed;
+
     protected Vector3
-        _gravityDir => ( -_entity.position + PlanetCenter.position ).normalized;
+        _gravityDir {
+        get
+        {
+            if (PlanetCenter)
+            {
+                
+                return  ( -_entity.position + PlanetCenter.position ).normalized;
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+        
+    }
+
 
     #endregion
 
@@ -62,19 +80,29 @@ public class PlanetMovementBase : MonoBehaviour
     Vector3 _tempUp;
     Vector3 _tempForward;
 
-    protected virtual void Awake()
+    private void Awake()
     {
         _entity = transform;
-        _rb = GetComponent<Rigidbody>();
+        Rb = GetComponent<Rigidbody>();
         _groundSense = GetComponent<GroundCollisionSense>();
+        Rb.useGravity = false;
+        Rb.isKinematic = false;
         _useGravity = true;
         _canGravityMove = true;
-        _isRotating = true;
-        _canFaceDirMove = true;
-        IsTargetMoving=true;
+        if (DataModule.Resolve<GameStatusDM>().CurGameState == EGameState.GamePlay1)
+        {
+            
+            Init();
+            _isRotating = true;
+            _canFaceDirMove = true;
+            IsTargetMoving=true;
+        }
+    }
 
-        _rb.isKinematic = false;
-        _rb.useGravity = false;
+    protected virtual void Start()
+    {
+        
+
 
     }
     protected virtual private void Update()
@@ -95,15 +123,12 @@ public class PlanetMovementBase : MonoBehaviour
     }
     void FixVelocity()
     {
-        var velocity = _rb.linearVelocity;
+        var velocity = Rb.linearVelocity;
         _gravitySpeed = GravityUtil.GetGravitySpeed(velocity, _gravityDir);
         _groundSense.GravityDir = _gravityDir;
     }
 
-    public void SetPlanetCenter(Transform tran)  {
-        PlanetCenter = tran;
-        _lastGravityDir = _gravityDir;
-} 
+
     public void SetFaceMoveTargetSpeed(float velocity)
     {
         _faceTargetSpeed = velocity;
@@ -168,7 +193,7 @@ public class PlanetMovementBase : MonoBehaviour
             _gravitySpeed = 0f;
         if(_canGravityMove)
         {
-            var velocity = _rb.linearVelocity;
+            var velocity = Rb.linearVelocity;
 
             _tempGravityVelocity = -_lastGravityDir*_gravitySpeed;
         }
@@ -231,14 +256,14 @@ public class PlanetMovementBase : MonoBehaviour
 
     protected virtual void FaceMove()
     {
-        _rb.linearVelocity = _tempFaceVelocity+_tempFaceVelocity;
+        Rb.linearVelocity = _tempFaceVelocity+_tempFaceVelocity;
     }
     private void OnDrawGizmos()
     {
         if(_entity &&PlanetCenter)
         {
             Gizmos.color = Color.green;
-            var velocity = _rb.linearVelocity;
+            var velocity = Rb.linearVelocity;
             Gizmos.DrawLine(_entity.position, _entity.position + _faceMoveDir3*_faceCurSpeed);
 
             Gizmos.color = Color.yellow;
@@ -248,4 +273,19 @@ public class PlanetMovementBase : MonoBehaviour
 
 
     }
+
+    public void Init()
+    {
+        
+        var world= GetComponentInParent<WorldAct>();
+        if ( world )
+        {
+            WorldType = world.WorldType;
+            PlanetCenter = DataModule.Resolve<GamePlayDM>().GetPlanet(WorldType).transform;
+            _lastGravityDir = _gravityDir;
+        }
+        
+    }
+
+    public EWorldType WorldType { get; set; }
 }

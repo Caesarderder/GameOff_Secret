@@ -7,7 +7,7 @@ public class BigWorldPlanet : MonoBehaviour
     public EWorldType WorldType;
     public float RotateSpeed=10f;
     
-    public virtual void Start()
+    public virtual void Awake()
     {
         FixAllGosDir();
         DataModule.Resolve<GamePlayDM>().SetPlanet(this);
