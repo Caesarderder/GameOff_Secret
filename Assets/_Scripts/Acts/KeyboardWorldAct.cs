@@ -8,6 +8,10 @@ public class KeyboardWorldAct : WorldAct
         PlanetIndex = 1;
         await base.OnLoad();
         Player = await Manager<ResManager>.Inst.LoadGo<APlayer>(ResManager.KWPlayer, tran_entity);
+        if(Physics.Raycast(Camera.transform.position,Camera.transform.forward,out var hit)) {
+
+            Player.transform.position = hit.point;
+        }
     }
 
     public override async void OnLoaded()

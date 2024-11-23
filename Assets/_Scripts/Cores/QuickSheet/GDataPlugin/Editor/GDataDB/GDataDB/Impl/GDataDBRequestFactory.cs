@@ -9,11 +9,7 @@
 using UnityEngine;
 using UnityEditor;
 using System;
-using System.Collections.Generic;
 using Google.GData.Client;
-using Google.GData.Spreadsheets;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using UnityQuickSheet;
 
 namespace GDataDB.Impl

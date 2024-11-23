@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      p2paint_01 - Default_Emissive_0: -5552938612836611318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

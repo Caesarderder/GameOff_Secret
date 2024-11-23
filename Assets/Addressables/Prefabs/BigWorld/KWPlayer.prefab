@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bound:
-    m_Center: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: 2.475, z: -0.579}
     m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &2830362185372695207
 GameObject:
@@ -175,7 +175,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.18, z: 0}
-  m_LocalScale: {x: 0.2104, y: 0.2104, z: 0.2104}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6157016092935363000}
@@ -268,9 +268,12 @@ MonoBehaviour:
   maxGravitySpeed: 3
   maxFaceSpeed: 1
   GravityConst: 5
-  SpeedChangeRate: 1
+  SpeedChangeRate: 2
   RotateSpeed: 10
   PlanetCenter: {fileID: 0}
+  Rb: {fileID: 0}
+  _canGravityMove: 0
+  _useGravity: 0
   IsTargetMoving: 0
   ScreenSafeRadius: 450
 --- !u!114 &2816726238012482030
@@ -285,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f2b911d8f184a43b80eeab184a8c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.5
+  MoveSpeed: 2
   CanInput: 0
   BelongWorld: 0
 --- !u!1001 &7125942858272108624
