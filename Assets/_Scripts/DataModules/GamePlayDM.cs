@@ -55,19 +55,28 @@ public class GamePlayDM : DataModule
 
     //Bag
     //0:没有 other:itemid
-    public int GetCurBagItem(EWorldType worldType)
+    public int GetCurBagItemId(EWorldType worldType)
     {
         return _intent.GetInt(Bag + worldType.ToString());
+    }
+    public bool TryGetCurBagItem(EWorldType worldType,out BagItem item)
+    {
+        item=_intent.GetObject(Bag + worldType.ToString()) as BagItem;
+        if(item)
+            return true;
+        return false;
+        
     }
 
     public bool TryAddItem(BagItem item)
     {
-        if ( GetCurBagItem(item.BelongWorld) != 0 )
+        if ( GetCurBagItemId(item.BelongWorld) != 0 )
         {
             return false;
         }
         else
         {
+            Debug.Log(item.WorldType+ "  " + item.ItemId+"add to bag");
             _intent.AddInt(Bag + item.BelongWorld.ToString(), item.ItemId);
             _intent.AddObject(Bag + item.BelongWorld.ToString(), item);
             return true;
@@ -76,13 +85,14 @@ public class GamePlayDM : DataModule
 
     public bool TryRemoveItem(EWorldType world)
     {
-            if(_intent.TryGetValue(Bag + world.ToString(),out BagItem bagItem))
-            {
-                _intent.AddObject(Bag + world.ToString(),null);
-                bagItem.DorpDown();
-                _intent.AddInt(Bag + world.ToString(), 0);
-                return true;
-            }
+        if ( _intent.TryGetValue(Bag + world.ToString(), out BagItem bagItem) )
+        {
+            _intent.AddObject(Bag + world.ToString(), null);
+            bagItem.DropDown();
+            _intent.AddInt(Bag + world.ToString(), 0);
+            Debug.Log(bagItem.WorldType + "  " + bagItem.ItemId + "remove from bag");
+            return true;
+        }
         return false;
     }
 
@@ -116,12 +126,17 @@ public class GamePlayDM : DataModule
     #region Planet
     public void SetPlanet(BigWorldPlanet planet)
     {
-        Debug.Log("SetPlanet!");
         _intent.AddObject("Planet"+planet.WorldType, planet);
     }
     public BigWorldPlanet GetPlanet(EWorldType type)
     {
         return _intent.GetObject("Planet"+type) as BigWorldPlanet;
+    }
+
+    public Transform GetPlanetCenter(EWorldType type)
+    {
+        var planet=GetPlanet(type);
+        return planet.transform;
     }
 
     public void SetWorld(WorldAct planet)

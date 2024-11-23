@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(GroundCollisionSense))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlanetMovementBase : MonoBehaviour ,IWorldObject
 {
     public float maxGravitySpeed =3f;
@@ -119,7 +120,7 @@ public class PlanetMovementBase : MonoBehaviour ,IWorldObject
             CaculateFaceMoveSpeed();
         }
         FaceRotate();
-        FaceMove();
+        Move();
     }
     void FixVelocity()
     {
@@ -254,7 +255,7 @@ public class PlanetMovementBase : MonoBehaviour ,IWorldObject
         _tempFaceVelocity = _faceMoveDir3.normalized*_faceCurSpeed;
     }
 
-    protected virtual void FaceMove()
+    protected virtual void Move()
     {
         Rb.linearVelocity = _tempFaceVelocity+_tempFaceVelocity;
     }

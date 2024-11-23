@@ -4,7 +4,7 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
 {
     public float ScreenSafeRadius=5f;
     EWorldType _worldType;
-    public EWorldType WorldType { get=>_worldType; set { Debug.Log("setWOrld!!!!"); _worldType=value; }  }
+    public EWorldType WorldType { get=>_worldType; set {  _worldType=value; }  }
 
     Camera _camera;
     public void Init()
@@ -38,7 +38,7 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
         base.Update();
     }
 
-    protected override void FaceMove()
+    protected override void Move()
     {
         if(CheckScreenSafe())
         {
@@ -67,7 +67,6 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
             var center=_camera.WorldToScreenPoint(hit.point); 
             var curPos=_camera.WorldToScreenPoint(_entity.position);
             var curDis = Vector3.Distance(center, curPos);
-            Debug.Log("��������"+curDis);
             if ( curDis<=ScreenSafeRadius)
             {
                 return true;
@@ -75,22 +74,18 @@ public class PlayerPlanetMovement : PlanetMovementBase,IWorldObject
             else
             {
                 var angle=Vector3.Angle(_faceMoveDir3,  hit.point - _entity.position);
-                Debug.Log(angle);
                 if ( angle<=90f)
                 {
-                    Debug.Log("�������ƶ�");
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Σ���ƶ�");
                     return false;
                 }
             }
         }
         else
         {
-            Debug.Log("δ�ҵ�����Σ���ƶ�");
             return false;
         }
       

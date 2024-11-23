@@ -37,8 +37,6 @@ public class GameStatusDM: DataModule
         EventAggregator.Unsubscribe<SActLoadEvent>(OnEnterAct);
     }
 
-
-
     public void OnEnterAct(SActLoadEvent evt)
     {
         if ( evt.ActName == typeof(KeyboardWorldAct).Name )
@@ -53,6 +51,11 @@ public class GameStatusDM: DataModule
         }
     }
 
+    public void UpdateRuneState(int id,bool unlock)
+    {
+        Data.RunesRecord[id]=unlock;
+        Data.Save();
+    }
 
     #endregion
 }

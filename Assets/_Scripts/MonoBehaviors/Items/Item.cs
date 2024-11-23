@@ -23,6 +23,7 @@ public class Item:MonoBehaviour,IWorldObject
     protected Transform _interactor;
 
     public int ItemId;
+    public string desc;
 
     public EWorldType WorldType { get => BelongWorld; set => BelongWorld=value; }
     public void Init()
@@ -33,7 +34,7 @@ public class Item:MonoBehaviour,IWorldObject
             WorldType = world.WorldType;
         }
     }
-    protected virtual void Start()
+    public virtual void Start()
     {
         Init();
         var dm=DataModule.Resolve<GamePlayDM>();

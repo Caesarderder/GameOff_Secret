@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BPlayer : Player
 {
@@ -54,6 +55,7 @@ public class BPlayer : Player
     {
         if(Raycast(out var hit,LayerMask.GetMask("Interactable")))
         {
+            Debug.Log(hit.transform.name);
             if(hit.transform.TryGetComponent<IPlayerInteractable>(out var interactable))
             {
                 if ( _sense.Interactables.Contains(interactable))

@@ -18,6 +18,42 @@ public class ResManager
     #endregion
 
     #region Methods
+    public async Task<T> LoadGo<T>(string address,Transform parent,Vector3 pos) where T : MonoBehaviour
+    {
+        AsyncOperationHandle<GameObject> handle;
+        // 防止重复加载
+        if ( !dic_loadingOps.ContainsKey(address) )
+        {
+            // 使用Addressables异步加载GameObject
+            handle = Addressables.LoadAssetAsync<GameObject>(address);
+            dic_loadingOps.Add(address, handle);
+        }
+        else
+            handle = dic_loadingOps[address];
+
+        var go = await handle.Task;
+
+
+        if ( handle.Status == AsyncOperationStatus.Succeeded )
+        {
+            // 实例化GameObject
+            GameObject loadedGameObject = GameObject.Instantiate(go,pos,go.transform.rotation,parent);
+            var mono= loadedGameObject.GetComponent<T>();
+
+            if ( mono != null )
+            {
+                return mono;
+            }
+        }
+        else
+        {
+            Debug.LogError($"Failed to load  go {address} via Addressables.");
+            dic_loadingOps.Remove(address);
+        }
+
+        //Debug.LogError($"none go adds to load {address}.");
+        return default;
+    }
     public async Task<T> LoadGo<T>(string address,Transform parent) where T : MonoBehaviour
     {
         AsyncOperationHandle<GameObject> handle;
