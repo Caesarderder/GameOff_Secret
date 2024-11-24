@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8675512445515778615}
   - component: {fileID: 46962365217867763}
   - component: {fileID: 1962693741963256655}
-  m_Layer: 8
-  m_Name: item_1001
+  m_Layer: 6
+  m_Name: item_1004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BelongWorld: 0
-  ItemId: 1001
-  desc: "\u6C34\u7B26\u6587"
+  ItemId: 1003
+  desc: "\u6728\u7B26\u6587"
   _followRange: 0.1
 --- !u!1 &4496831687502557563
 GameObject:
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6774183888692626670}
   - component: {fileID: 5512331526472147324}
   - component: {fileID: 8805523230594146306}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2313bd55d28604c4ab4b791645360c28, type: 2}
+  - {fileID: 2100000, guid: fd88c34ffe60dd94ebd218dcf18935c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

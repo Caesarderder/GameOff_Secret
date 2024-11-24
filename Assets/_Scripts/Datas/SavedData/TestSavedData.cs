@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class GameStatusSavedData:LocalSaveData
 {
-    public int UnlockLevelCount;
+    public int UnlockLevelCount; 
     public int CurSelectedLevel;
 
     //·ûÎÄÊÇ·ñ½âËø

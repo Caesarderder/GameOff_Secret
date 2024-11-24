@@ -96,6 +96,16 @@ public class GamePlayDM : DataModule
         return false;
     }
 
+    public async void GenerateItemInBag(EWorldType WorldType,int itemId,Vector3 pos,Transform interactor)
+    {
+        var planet=DataModule.Resolve<GamePlayDM>().GetPlanet(WorldType);
+        var bagItem = await Manager<ResManager>.Inst.LoadGo<BagItem>($"item_{itemId}", planet.transform,pos);
+        bagItem.Start();
+        TryRemoveItem(WorldType);
+        bagItem.EnterTrigger(interactor);
+        bagItem.Interact();
+    }
+
     public void SetItemState(Item item,EItemState state)
     {
         var key = $"{item.ItemId}{item.BelongWorld}";

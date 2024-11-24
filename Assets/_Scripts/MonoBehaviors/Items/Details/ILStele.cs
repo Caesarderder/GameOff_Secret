@@ -1,18 +1,54 @@
+using DG.Tweening;
 using UnityEngine;
 
-public class ILPaingtingSoil:ItemList,IPlayerInteractable
+public class ILStele : ItemList,IPlayerInteractable
 {
+    Collider[] _colliders;
+    public override void Start()
+    {
+        base.Start();
+        _colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider collider in _colliders)
+        {
+            collider.enabled = false;
+        }
+        EventAggregator.Subscribe<SItemInteractEvent>(OnInteractEvent);
+    }
+    public void OnDestroy()
+    {
+        EventAggregator.Unsubscribe<SItemInteractEvent>(OnInteractEvent);
+    }
+    void OnInteractEvent(SItemInteractEvent evt)
+    {
+        if(evt.OldId==3001&&evt.CurId==3002&&ItemId==2001)
+        {
+            DoMove();
+        }
+        if(evt.OldId==3002&&evt.CurId==3003&&ItemId==2001)
+        {
+            ChangeState(2004);
+        }
+    }
+
+    void DoMove()
+    {
+        transform.DOLocalMoveY(transform.localPosition.y+ 1.5f, 2f).OnComplete(() => { 
+        foreach (Collider collider in _colliders)
+        {
+            collider.enabled = true;
+        }
+        });
+    }
+
+    //2001,2004
     public override void ChangeState(int id)
     {
-        var oldItemId = ItemId;
         //去除当前状态
         switch ( ItemId )
         {
-            case 3001:
+            case 2001:
                 break;
-            case 3002:
-                break;
-            case 3003:
+            case 2004:
                 break;
             default:
                 break;
@@ -22,21 +58,14 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
         //更新现在状态
         switch ( id )
         {
-            case 3001:
+            case 2001:
                 break;
-            case 3002:
-                break;
-            case 3003:
+            case 2004:
                 break;
             default:
                 break;
         }
         ItemId = id;
-        EventAggregator.Publish(new SItemInteractEvent()
-        {
-            OldId= oldItemId,
-            CurId=ItemId
-        });
 
     }    
     public override void EnterTrigger(Transform tran)
@@ -79,24 +108,15 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
         var dm = DataModule.Resolve<GamePlayDM>();
         switch ( ItemId )
         {
-            case 3001:
-                if(dm.TryGetCurBagItem(WorldType,out var item))
-                {
-                    item.Use(transform.position,()=>ChangeState(3002));
-                }
+            case 2001:
+                DataModule.Resolve<GamePlayDM>().GenerateItemInBag(WorldType, 1003, transform.position, _interactor);
                 break;
-            case 3002:
-                if(dm.TryGetCurBagItem(WorldType,out var item1))
-                {
-                    item1.Use(transform.position,()=>ChangeState(3003));
-                }
-                break;
-            case 3003:
+            case 2004:
+                DataModule.Resolve<GamePlayDM>().GenerateItemInBag(WorldType, 1004, transform.position, _interactor);
                 break;
             default:
                 break;
         }
- 
     }
 
 

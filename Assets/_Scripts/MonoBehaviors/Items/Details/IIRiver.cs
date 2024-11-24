@@ -38,13 +38,10 @@ public class IIRiver : InteractItem,IPlayerInteractable
         base.ExitTrigger(tran);
     }
 
-    public override async void Interact()
+    public override void Interact()
     {
-        var planet=DataModule.Resolve<GamePlayDM>().GetPlanet(WorldType);
-        var bagItem = await Manager<ResManager>.Inst.LoadGo<BagItem>("item_1001", planet.transform,transform.position);
-        bagItem.Start();
-        bagItem.EnterTrigger(_interactor);
-        bagItem.Interact();
+        
+        DataModule.Resolve<GamePlayDM>().GenerateItemInBag(WorldType,1001,transform.position,_interactor);
     }
 
 
