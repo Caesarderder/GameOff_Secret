@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BelongWorld: 0
-  ItemId: 1004
+  ItemId: 1003
   desc: "\u571F\u7B26\u6587"
   _followRange: 0.1
 --- !u!1 &4496831687502557563

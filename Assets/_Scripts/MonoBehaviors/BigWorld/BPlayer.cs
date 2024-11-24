@@ -60,7 +60,8 @@ public class BPlayer : Player
             {
                 if ( _sense.Interactables.Contains(interactable))
                 {
-                    interactable.Interact();
+                    if(interactable.CanInteract())
+                        interactable.Interact();
                 }
             }
         }

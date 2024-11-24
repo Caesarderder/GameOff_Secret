@@ -75,26 +75,26 @@ public class ILStele : ItemList,IPlayerInteractable
 
     public override bool CanInteract()
     {
-        switch ( ItemId )
-        {
-            case 3001:
-                if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==4001)
-                {
-                    return true;
-                }
-                break;
-            case 3002:
-                if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==1001)
-                {
-                    return true;
-                }
-                break;
-            case 3003:
-                break;
-            default:
-                break;
-        }
-        return false;
+        //switch ( ItemId )
+        //{
+        //    case 3001:
+        //        if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==4001)
+        //        {
+        //            return true;
+        //        }
+        //        break;
+        //    case 3002:
+        //        if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==1001)
+        //        {
+        //            return true;
+        //        }
+        //        break;
+        //    case 3003:
+        //        break;
+        //    default:
+        //        break;
+        //}
+        return true;
     }
 
     public override void ExitTrigger(Transform tran)
