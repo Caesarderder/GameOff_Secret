@@ -13,8 +13,11 @@ public class Slot : MonoBehaviour
     public int matchRuneID;
     public List<Slot> adjacentSlots;
 
-    private void Start()
+    private void OnEnable()
     {
+        curRune = GetComponentInChildren<Rune>(true);
+        isEmpty=curRune.runeID == 0;
+        CheckIsMatch();
         Debug.Log("<color=green>curSlotID: </color>" + slotID + "<color=green>curRuneID: </color>" + curRune.runeID);
         Debug.Log("<color=green>isMatch: </color>" + isEmpty);
     }
@@ -57,7 +60,6 @@ public class Slot : MonoBehaviour
     }
     public void UpdateCurRune()
     {
-        Transform childTransform = transform.GetChild(0);
-        curRune = childTransform.gameObject.GetComponent<Rune>();
+        curRune = GetComponentInChildren<Rune>(true);
     }
 }

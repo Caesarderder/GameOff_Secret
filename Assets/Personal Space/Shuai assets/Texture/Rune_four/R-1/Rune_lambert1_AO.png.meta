@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rune_lambert1_AO_0: 8181321878747553709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

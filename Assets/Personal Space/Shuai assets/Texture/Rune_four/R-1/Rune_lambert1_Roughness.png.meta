@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rune_lambert1_Roughness_0: -2010056630561942227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

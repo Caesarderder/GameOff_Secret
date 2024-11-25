@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rune_lambert1_Height_0: 6562305633019336632
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
