@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using DG.Tweening;
 
 public class GameRuneWidget :MonoBehaviour 
