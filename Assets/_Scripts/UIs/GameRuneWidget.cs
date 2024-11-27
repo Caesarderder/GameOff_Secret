@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
+using UnityEngine.EventSystems;
 
 public class GameRuneWidget :MonoBehaviour 
 {
     EWorldType _worldType;
     [SerializeField]
     Button btn_close;
+    Button[] slotBtns;
     Slot[] slots;
     int CurSelectedSlotIndex;
     Slot CurSelectedSlot = null;
@@ -39,7 +42,6 @@ public class GameRuneWidget :MonoBehaviour
         GetEmptySlot();
         CurSelectedSlot = CurEmptySlot;
         _canChange = true;
-
     }
     public void Close()
     {
@@ -53,6 +55,18 @@ public class GameRuneWidget :MonoBehaviour
     void Start()
     {
         GetEmptySlot();
+        slotBtns = GetSlotButtons();
+        for (int i = 0; i < slotBtns.Length; i++)
+        {
+            if (slotBtns[i] != null)
+            {
+                int index = i;
+                slotBtns[i].onClick.AddListener(() =>
+                {
+                    OnSlotButtonClick(index);
+                });
+            }
+        }
     }
     void Update()
     {
@@ -105,7 +119,7 @@ public class GameRuneWidget :MonoBehaviour
         }
         else
         {
-            Debug.LogError("<color=red>无可交换符文的slot</color>");
+            Debug.LogError("<color=red>无可交换的符文</color>");
         }
     }
 
@@ -173,5 +187,42 @@ public class GameRuneWidget :MonoBehaviour
             Debug.LogError("<color=red>未找到空slot</color>");
         }
 
+    }
+    private Button[] GetSlotButtons()
+    {
+        Button[] buttons = new Button[slots.Length];
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            Button btn = slots[i].GetComponent<Button>();
+            if (btn != null)
+            {
+                buttons[i] = btn;
+            }
+            else
+            {
+                Debug.LogWarning($"Slot at index {i} does not have a Button component attached.");
+            }
+        }
+        return buttons;
+    }
+    private void OnSlotButtonClick(int buttonIndex)
+    {
+        CurSelectedSlot = slots[buttonIndex];
+        if (CurSelectedSlot != null)
+        {
+            if (IsAdjacentSlot(CurSelectedSlot))
+            {
+                ChangeRune();
+            }
+        }
+    }
+    private bool IsAdjacentSlot(Slot slot)
+    {
+        if (CurEmptySlot != null && CurEmptySlot.adjacentSlots != null)
+        {
+            return CurEmptySlot.adjacentSlots.Contains(slot);
+        }
+        return false;
     }
 }

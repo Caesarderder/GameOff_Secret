@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
-
-public class Slot : MonoBehaviour
+public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     private bool isMatch = false;
     public Image muralImg;
@@ -21,6 +23,7 @@ public class Slot : MonoBehaviour
         Debug.Log("<color=green>curSlotID: </color>" + slotID + "<color=green>curRuneID: </color>" + curRune.runeID);
         Debug.Log("<color=green>isMatch: </color>" + isEmpty);
     }
+
     private void Update()
     {
         if (isEmpty)
@@ -61,5 +64,14 @@ public class Slot : MonoBehaviour
     public void UpdateCurRune()
     {
         curRune = GetComponentInChildren<Rune>(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.DOScale(1f, 0.3f);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.DOScale(1.3f, 0.3f);
     }
 }
