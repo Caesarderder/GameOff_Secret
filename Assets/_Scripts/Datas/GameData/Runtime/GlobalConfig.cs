@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GlobalConfig", menuName = "Scriptable Objects/GlobalConfig")]
@@ -19,7 +20,6 @@ public class GlobalConfig : ScriptableObject
 
     public Vector3
         Center;
-
 
 }
 

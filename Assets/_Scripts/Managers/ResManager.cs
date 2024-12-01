@@ -13,11 +13,18 @@ public class ResManager
     public static readonly string KWPlayer="KWPlayer";
     public static readonly string CWPlayer="CWPlayer";
 
+    public static MonoManager MonoManager;
+
 
     private Dictionary<string, AsyncOperationHandle<GameObject>> dic_loadingOps = new Dictionary<string, AsyncOperationHandle<GameObject>>();
     #endregion
 
     #region Methods
+    public async Task Init()
+    {
+        MonoManager=await LoadGo<MonoManager>("MonoManager");
+        GameObject.DontDestroyOnLoad(MonoManager.gameObject);
+    }
     public async Task<T> LoadGo<T>(string address,Transform parent,Vector3 pos) where T : MonoBehaviour
     {
         AsyncOperationHandle<GameObject> handle;

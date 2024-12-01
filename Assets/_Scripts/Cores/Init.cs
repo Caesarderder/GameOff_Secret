@@ -24,16 +24,25 @@ public class Init : MonoBehaviour
         #region Register      
         var tableManager = new TableManager();
         await tableManager.Init();
+        GContext.RegisterSingleton<TableManager>(tableManager);
+
+        var resManager= new ResManager();
+        await resManager.Init();
+        GContext.RegisterSingleton<MonoManager>(ResManager.MonoManager);
+        GContext.RegisterSingleton<ResManager>(resManager);
+
         Debug.Log("Table Init time:"+Time.time);
 
         var uiManager=new UIManager();
-        await uiManager.Init();
-
-
-        GContext.RegisterSingleton<TableManager>(tableManager);
+        await uiManager.Init(ResManager.MonoManager.UIRoot);
         GContext.RegisterSingleton<UIManager>(uiManager);
+
+        var audioManager=new AudioManager();
+        audioManager.Init();
+        GContext.RegisterSingleton<AudioManager>(audioManager);
+
+
         GContext.RegisterSingleton<ActManager>();
-        GContext.RegisterSingleton<ResManager>();
         GContext.RegisterSingleton<InputManager>();
 
         GContext.RegisterMoudle<InputDataModule>();
@@ -41,6 +50,7 @@ public class Init : MonoBehaviour
         GContext.RegisterMoudle<GamePlayDM>();
 
         Debug.Log("GContext register time:"+Time.time);
+        Manager<AudioManager>.Inst.PlaySoundEffect(EAudioEffectIndex.test1);
 
         #endregion
     }

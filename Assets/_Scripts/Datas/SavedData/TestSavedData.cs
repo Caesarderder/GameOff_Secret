@@ -7,6 +7,7 @@ public class GameStatusSavedData:LocalSaveData
 
     //·ûÎÄÊÇ·ñ½âËø
     public Dictionary<int,bool> RunesRecord=new();
+    public Dictionary<int,string> RunesDescRecord=new();
 
     public Dictionary<int, string> RunesRecordDesc = new();
 

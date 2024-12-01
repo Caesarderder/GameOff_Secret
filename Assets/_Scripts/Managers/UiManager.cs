@@ -38,27 +38,11 @@ public class UIManager
     #endregion
 
     #region Methods
-    public async Task Init()
+    public async Task Init(Transform uiRoot)
     {
         if (_root != null)
             return;
-        string uiRootAddress = "UIRoot"; // UIRoot的Addressable地址
-
-        // 加载UIRoot
-        AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(uiRootAddress);
-        await handle.Task;
-
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            // 实例化UIRoot并设置为场景中的一个对象
-            _root=GameObject.Instantiate(handle.Result).transform ; 
-            GameObject.DontDestroyOnLoad(_root);  // 设置为DontDestroyOnLoad，防止在场景切换时被销毁
-            _root.gameObject.name = "UIRoot"; // 便于识别
-        }
-        else
-        {
-            Debug.LogError($"Failed to load UIRoot from address {uiRootAddress}");
-        }
+        _root = uiRoot;
     }
 
     /// <summary>
