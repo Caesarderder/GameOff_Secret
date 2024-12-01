@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
+using TMPro;
 
 public class GameRuneWidget :MonoBehaviour 
 {
@@ -14,7 +16,9 @@ public class GameRuneWidget :MonoBehaviour
     int CurSelectedSlotIndex;
     Slot CurSelectedSlot = null;
     Slot CurEmptySlot = null;
-
+    private bool isGameSuccess = false;
+    public TMP_InputField runeDesc;
+    bool _canInput;
 
     public void Init(EWorldType type)
     {
@@ -42,6 +46,7 @@ public class GameRuneWidget :MonoBehaviour
         GetEmptySlot();
         CurSelectedSlot = CurEmptySlot;
         _canChange = true;
+        _canInput = true;
     }
     public void Close()
     {
@@ -67,24 +72,32 @@ public class GameRuneWidget :MonoBehaviour
                 });
             }
         }
+
+        runeDesc.onEndEdit.AddListener(SaveRuneDesc);
+        runeDesc.onSelect.AddListener(x => _canInput = false);
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if(_worldType == EWorldType.A && _canInput)
         {
-            Debug.Log ("<color=green>逆时针切换符文</color>");
-            MoveAntiClockwise();
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                //Debug.Log ("<color=green>逆时针切换符文</color>");
+                MoveAntiClockwise();
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                //Debug.Log("<color=green>顺时针切换符文</color>");
+                MoveClockwise();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //Debug.Log("<color=green>交换符文</color>");
+                ChangeRune();
+            }
+
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("<color=green>顺时针切换符文</color>");
-            MoveClockwise();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("<color=green>交换符文</color>");
-            ChangeRune();
-        }
+        IsAllMatch();
     }
     public void MoveClockwise()
     {
@@ -97,30 +110,39 @@ public class GameRuneWidget :MonoBehaviour
 
     public void ChangeSelectedIndex(int count)
     {
-        if (CurEmptySlot != null && CurEmptySlot.adjacentSlots != null && CurEmptySlot.adjacentSlots.Count > 0&&_canChange)
+        if(_worldType==EWorldType.A)
         {
-            CurSelectedSlotIndex=count;
-            var maxIndex=CurEmptySlot.adjacentSlots.Count-1;
-            if(CurSelectedSlotIndex<0)
+            if (CurEmptySlot != null && CurEmptySlot.adjacentSlots != null && CurEmptySlot.adjacentSlots.Count > 0 && _canChange)
             {
-                CurSelectedSlotIndex= maxIndex;
+                CurSelectedSlotIndex = count;
+                var maxIndex = CurEmptySlot.adjacentSlots.Count - 1;
+                if (CurSelectedSlotIndex < 0)
+                {
+                    CurSelectedSlotIndex = maxIndex;
 
-            }    
-            else if(CurSelectedSlotIndex >maxIndex)
-            {
-                CurSelectedSlotIndex= 0;
+                }
+                else if (CurSelectedSlotIndex > maxIndex)
+                {
+                    CurSelectedSlotIndex = 0;
+                }
+
+                CurSelectedSlot.transform.DOScale(1f, 0.3f);
+                CurSelectedSlot = CurEmptySlot.adjacentSlots[CurSelectedSlotIndex];
+                CurSelectedSlot.transform.DOScale(1.3f, 0.3f);
+                //Debug.Log("<color=red>可与空slot </color>" + CurEmptySlot.slotID + "<color=red>交换符文的slot为: </color>" + CurSelectedSlot.slotID);
+
+                runeDesc.text = DataModule.Resolve<GameStatusDM>().GetRuneDesc(CurSelectedSlot.curRune.runeID);
             }
-
-            CurSelectedSlot.transform.DOScale(1f, 0.3f);
-            CurSelectedSlot= CurEmptySlot.adjacentSlots[CurSelectedSlotIndex];
-            CurSelectedSlot.transform.DOScale(1.3f, 0.3f);
-            Debug.Log("<color=red>可与空slot </color>" + CurEmptySlot.slotID + "<color=red>交换符文的slot为: </color>" + CurSelectedSlot.slotID);
-            Debug.Log("<color=green>********更换符文结束 </color>");
+            else
+            {
+                Debug.LogError("<color=red>无可交换的符文</color>");
+            }
         }
         else
         {
-            Debug.LogError("<color=red>无可交换的符文</color>");
+
         }
+
     }
 
     bool _canChange;
@@ -142,7 +164,7 @@ public class GameRuneWidget :MonoBehaviour
                                     {
                                         CurSelectedSlot.curRune.transform.SetParent(CurEmptySlot.transform, true);
                                         CurEmptySlot.curRune.transform.SetParent(CurSelectedSlot.transform, false);
-                                        Debug.Log("********符文位置移动动画完成");
+                                        //Debug.Log("********符文位置移动动画完成");
                                         CurSelectedSlot.isEmpty = true;
                                         CurEmptySlot.isEmpty = false;
 
@@ -151,11 +173,20 @@ public class GameRuneWidget :MonoBehaviour
                                         CurEmptySlot.CheckIsMatch();
                                         CurSelectedSlot.CheckIsMatch();
 
-                                        GetEmptySlot();
-                                        ChangeSelectedIndex(CurSelectedSlotIndex);
+                                        if(_worldType==EWorldType.A)
+                                        {
+                                            GetEmptySlot();
+                                            ChangeSelectedIndex(CurSelectedSlotIndex);
+                                        }
+                                        else
+                                        {
+                                            CurSelectedSlot = CurEmptySlot;
+                                            GetEmptySlot();
+                                        }
+                                  
                                         pos_start.localScale= Vector3.one;
                                         _canChange=true;
-                                        Debug.Log("<color=green>********更新空槽</color>");
+                                        //Debug.Log("<color=green>********更新空槽</color>");
                                     });
             }
             else
@@ -208,11 +239,18 @@ public class GameRuneWidget :MonoBehaviour
     }
     private void OnSlotButtonClick(int buttonIndex)
     {
+        if (_worldType == EWorldType.A || !_canInput)
+            return;
         CurSelectedSlot = slots[buttonIndex];
+   
         if (CurSelectedSlot != null)
         {
+         
             if (IsAdjacentSlot(CurSelectedSlot))
             {
+                
+                runeDesc.text = DataModule.Resolve<GameStatusDM>().GetRuneDesc(CurSelectedSlot.curRune.runeID);
+                Debug.Log(runeDesc.text);
                 ChangeRune();
             }
         }
@@ -225,4 +263,33 @@ public class GameRuneWidget :MonoBehaviour
         }
         return false;
     }
+    private void IsAllMatch()
+    {
+        bool allMatch = true;
+        foreach (Slot slot in slots)
+        {
+            if (slot != null && !slot.getIsMatch())
+            {
+                allMatch = false;
+                break;
+            }
+        }
+        if (allMatch && !isGameSuccess)
+        {
+            Debug.Log("<color=green>游戏成功</color>");
+            isGameSuccess = true;
+        }
+    }
+
+    private void SaveRuneDesc(string inputText)
+    {
+        _canInput = true;
+        Debug.Log("6666666666666666");
+        if (CurSelectedSlot != null && CurSelectedSlot.curRune.runeID != 0)
+        {
+            DataModule.Resolve<GameStatusDM>().UpdateRuneDesc(CurSelectedSlot.curRune.runeID, inputText);
+
+        }
+    }
+
 }

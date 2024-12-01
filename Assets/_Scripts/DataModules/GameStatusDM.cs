@@ -57,5 +57,21 @@ public class GameStatusDM: DataModule
         Data.Save();
     }
 
+    public void UpdateRuneDesc(int id, string desc)
+    {
+        Data.RunesRecordDesc[id] = desc;
+        Data.Save();
+    }
+
+    public string GetRuneDesc(int id)
+    {
+        if(Data.RunesRecordDesc.TryGetValue(id,out var value))
+        {
+            return value;
+        }
+        return "";
+    }
+
+
     #endregion
 }

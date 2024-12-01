@@ -38,7 +38,7 @@ public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
         if (isMatch)
         {
             Color currentColor = muralImg.color;
-            currentColor.a = 1.0f;
+            currentColor.a = 0.0f;
             muralImg.color = currentColor;
         }
         else
@@ -73,5 +73,9 @@ public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.DOScale(1.3f, 0.3f);
+    }
+    public bool getIsMatch()
+    {
+        return isMatch;
     }
 }
