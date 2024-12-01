@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class ILPaingtingSoil:ItemList,IPlayerInteractable
 {
+    public Animator animator;
+    public GameObject go_seed;
+    public GameObject go_flower;
     public override void ChangeState(int id)
     {
         var oldItemId = ItemId;
@@ -9,6 +12,7 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
         switch ( ItemId )
         {
             case 3001:
+
                 break;
             case 3002:
                 break;
@@ -25,8 +29,13 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
             case 3001:
                 break;
             case 3002:
+                go_seed.SetActive(true);
+                animator.Play("SeedDown");
                 break;
             case 3003:
+                go_seed.SetActive(false);
+                go_flower.SetActive(true);
+                animator.Play("FlowerUp");
                 break;
             default:
                 break;
@@ -48,8 +57,8 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
     {
         switch ( ItemId )
         {
-            case 3001:
-                if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==4001)
+            case 3001:  
+                if(DataModule.Resolve<GamePlayDM>().GetCurBagItemId(WorldType)==4001) 
                 {
                     return true;
                 }
@@ -73,6 +82,7 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
         base.ExitTrigger(tran);
     }
 
+
     public override void Interact()
     {
         base.Interact();
@@ -82,11 +92,16 @@ public class ILPaingtingSoil:ItemList,IPlayerInteractable
             case 3001:
                 if(dm.TryGetCurBagItem(WorldType,out var item))
                 {
-                    item.Use(transform.position,()=>ChangeState(3002));
+                    
+                    if (item.ItemId == 4001)  
+                    {
+                       
+                        item.Use(transform.position, () => ChangeState(3002));
+                    }
                 }
                 break;
             case 3002:
-                if(dm.TryGetCurBagItem(WorldType,out var item1))
+                if(dm.TryGetCurBagItem(WorldType,out var item1)) 
                 {
                     item1.Use(transform.position,()=>ChangeState(3003));
                 }
