@@ -8,6 +8,8 @@ public class BIRune:BagItem,IPlayerInteractable
     public override void Start()
     {
         base.Start();
+
+        Manager<AudioManager>.Inst.PlaySoundEffect(5);   
     }
 
     public override void EnterTrigger(Transform tran)
@@ -57,6 +59,11 @@ public class BIRune:BagItem,IPlayerInteractable
         base.Use(pos,callBack);
         //数据层解锁符文
         DataModule.Resolve<GameStatusDM>().UpdateRuneState(ItemId, true);
+        EventAggregator.Publish(new SItemInteractEvent()
+        {
+            CurId = ItemId,
+            OldId = ItemId,
+        });
     }
 
 }

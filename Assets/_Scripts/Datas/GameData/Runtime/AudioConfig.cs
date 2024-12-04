@@ -6,16 +6,16 @@ using UnityEngine;
 [Serializable]
 public class AudioConfig : ScriptableObject
 {
-    public List<SAudioMap> list=new();
+    public List<AudioClip> list=new();
     
-    public Dictionary<EAudioEffectIndex, AudioClip> Dics = new();
+    public Dictionary<int, AudioClip> Dics = new();
 
     public void Init()
     {
         Dics.Clear();
         for ( int i = 0; i < list.Count; i++ )
         {
-            Dics.Add(list[i].index, list[i].ac);
+            Dics.Add(i+1, list[i]);
         }
     }
 
@@ -24,14 +24,11 @@ public class AudioConfig : ScriptableObject
 [Serializable]
 public struct SAudioMap
 {
-   public EAudioEffectIndex index
+   public int index
         ;
     public AudioClip ac;
 }
-public enum EAudioEffectIndex
-{
-    test1=1, 
-    test2=2, 
-    test3=3,
-}
+//public int EAudioEffectIndex
+//{
+//}
 

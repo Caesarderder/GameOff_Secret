@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6331470569400997108}
   - component: {fileID: 4436427556189831676}
+  - component: {fileID: 8236134178151855371}
   m_Layer: 0
   m_Name: CursorWorldAct
   m_TagString: Untagged
@@ -87,6 +88,22 @@ MonoBehaviour:
   tran_static: {fileID: 651975659369800339}
   tran_entity: {fileID: 8382429716110015590}
   Camera: {fileID: 1570411864327819322}
+--- !u!114 &8236134178151855371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829772098506132068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47afa0e42a03624b983200316155ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClipIndex: 2
+  PlayOnAwake: 1
+  Loop: 1
+  StopWhenDisable: 1
 --- !u!1 &1961521541862714833
 GameObject:
   m_ObjectHideFlags: 0

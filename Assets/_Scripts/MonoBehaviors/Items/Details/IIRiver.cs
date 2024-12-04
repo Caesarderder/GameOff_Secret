@@ -3,6 +3,7 @@ using UnityEngine;
 public class IIRiver : InteractItem,IPlayerInteractable
 {
     bool _canInteract;
+    public Animator Animator;
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -18,6 +19,8 @@ public class IIRiver : InteractItem,IPlayerInteractable
     {
         if(evt.CurId==2003)
         {
+            Animator.Play("planetOneAnimation");
+            Manager<AudioManager>.Inst.PlaySoundEffect(9);
             gameObject.SetActive(true); 
             _canInteract = true;
         }

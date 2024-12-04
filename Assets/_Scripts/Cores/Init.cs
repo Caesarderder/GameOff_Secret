@@ -50,7 +50,6 @@ public class Init : MonoBehaviour
         GContext.RegisterMoudle<GamePlayDM>();
 
         Debug.Log("GContext register time:"+Time.time);
-        Manager<AudioManager>.Inst.PlaySoundEffect(EAudioEffectIndex.test1);
 
         #endregion
     }

@@ -49,6 +49,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448859067955743069}
   - component: {fileID: 6892161200572107517}
+  - component: {fileID: 6404339622518951136}
   m_Layer: 0
   m_Name: HomeAct
   m_TagString: Untagged
@@ -89,6 +90,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0956e0b715c95b449a56a345a7358be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6404339622518951136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099539678381964498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47afa0e42a03624b983200316155ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioClipIndex: 1
+  PlayOnAwake: 1
+  Loop: 0
+  StopWhenDisable: 1
 --- !u!1 &4206829440934214939
 GameObject:
   m_ObjectHideFlags: 0
@@ -74762,6 +74779,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.0079961
       objectReference: {fileID: 0}
+    - target: {fileID: 4003373539608493791, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806298076169856701, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5920224099339911596, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.057262443
@@ -74785,6 +74810,10 @@ PrefabInstance:
     - target: {fileID: 5920224099339911596, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0079961
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229422207948631645, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8200565942779387740, guid: 0c6b7fb2c7e163d42bc1a8288be1c377, type: 3}
       propertyPath: m_LocalScale.x

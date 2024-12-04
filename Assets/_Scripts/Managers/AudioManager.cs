@@ -17,7 +17,7 @@ public class AudioManager
     // 音效的音频源池
     private List<AudioSource> soundEffectSources = new List<AudioSource>();
     // 音效预设列表
-    public Dictionary<EAudioEffectIndex,AudioClip> soundEffects;
+    public Dictionary<int,AudioClip> soundEffects;
 
     GameObject go_asPool;
 
@@ -69,16 +69,21 @@ public class AudioManager
     }
 
     // 播放音效
-    public void PlaySoundEffect(EAudioEffectIndex effectIndex)
+    public void PlaySoundEffect(int effectIndex)
     {
         // 确保索引有效
-            AudioSource soundEffectSource = GetAvailableSoundEffectSource();
-            soundEffectSource.clip = soundEffects[effectIndex];
-            soundEffectSource.Play();
+        AudioSource soundEffectSource = GetAvailableSoundEffectSource();
+        soundEffectSource.clip = soundEffects[effectIndex];
+        soundEffectSource.Play();
+    }
+    public AudioClip GetAudioClipByIndex(int index)
+    {
+        AudioSource soundEffectSource = GetAvailableSoundEffectSource();
+        return soundEffects[index];
     }
 
     // 获取可用的音效音源
-    private AudioSource GetAvailableSoundEffectSource()
+    public AudioSource GetAvailableSoundEffectSource()
     {
         foreach ( AudioSource source in soundEffectSources )
         {

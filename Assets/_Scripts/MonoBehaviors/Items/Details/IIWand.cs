@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class IIWand: InteractItem,IPlayerInteractable
 {
+    public GameObject go;
     private void Awake()
     {
     }
@@ -30,13 +31,14 @@ public class IIWand: InteractItem,IPlayerInteractable
         base.ExitTrigger(tran);
     }
 
-    public override void Interact()
+    public override void Interact() 
     {
         if ( DataModule.Resolve<GamePlayDM>().TryGetCurBagItem(WorldType, out var item) )
         {
             item.Use(transform.position, () =>
             {
                 DataModule.Resolve<GameStatusDM>().UpdateRuneState(1002, true);
+                go.SetActive(true);
                 EventAggregator.Publish(new SItemInteractEvent()
                 {
                     CurId = ItemId

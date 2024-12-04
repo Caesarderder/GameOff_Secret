@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum EBagItemState
@@ -144,9 +145,16 @@ public class BagItem:Item ,IPlayerInteractable
                 SetCollider(true);
                 break;
             case EBagItemState.InBag:
+                if(this.GetType() is BIRune)
+                { }
+                    else
+                    Manager<AudioManager>.Inst.PlaySoundEffect(8);
                 //_move._canGravityMove= false;
                 //_move._useGravity= false;
                 SetCollider(false);
+                break;
+                case EBagItemState.Using:
+                    Manager<AudioManager>.Inst.PlaySoundEffect(8);
                 break;
             default:
                 break;

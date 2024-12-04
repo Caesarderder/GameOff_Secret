@@ -50,6 +50,7 @@ public class GameRuneWidget :MonoBehaviour
     }
     public void Close()
     {
+        //Manager<AudioManager>.Inst.PlaySoundEffect(4);   
         gameObject.SetActive(false);
 
         EventAggregator.Publish(new ChangeGameStateEvent() { 
@@ -248,7 +249,8 @@ public class GameRuneWidget :MonoBehaviour
          
             if (IsAdjacentSlot(CurSelectedSlot))
             {
-                
+
+                //Manager<AudioManager>.Inst.PlaySoundEffect(4);
                 runeDesc.text = DataModule.Resolve<GameStatusDM>().GetRuneDesc(CurSelectedSlot.curRune.runeID);
                 Debug.Log(runeDesc.text);
                 ChangeRune();
@@ -265,6 +267,7 @@ public class GameRuneWidget :MonoBehaviour
     }
     private void IsAllMatch()
     {
+        //Manager<AudioManager>.Inst.PlaySoundEffect(6);   
         bool allMatch = true;
         foreach (Slot slot in slots)
         {

@@ -55,6 +55,9 @@ public class GameStatusDM: DataModule
     {
         Data.RunesRecord[id]=unlock;
         Data.Save();
+        if ( Data.RunesRecord.Count == 4 )
+            Manager<AudioManager>.Inst.PlaySoundEffect(7);
+
     }
 
     public void UpdateRuneDesc(int id, string desc)

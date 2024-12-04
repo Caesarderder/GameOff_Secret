@@ -18,6 +18,7 @@ public class IIAFireMountain : InteractItem,IPlayerInteractable
     {
         if(evt.CurId==3005)
         {
+            Manager<AudioManager>.Inst.PlaySoundEffect(11);
             transform.DOLocalMoveX(transform.localPosition.x - 0.5f, 1f);
             _canInteract = true;
         }

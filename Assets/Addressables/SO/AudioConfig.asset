@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
   list:
-  - index: 1
-    ac: {fileID: 8300000, guid: 3b4cffe0a3a751247a2827b602cd79a3, type: 3}
-  - index: 2
-    ac: {fileID: 8300000, guid: 921e3f2f799421f42ae0d166588c35a1, type: 3}
-  - index: 3
-    ac: {fileID: 8300000, guid: 7960405b2381b56439b59dbfaa198d5c, type: 3}
+  - {fileID: 8300000, guid: 3f3e4375f88cccd42b2028a27911bc18, type: 3}
+  - {fileID: 8300000, guid: a3f4c6ff3eb34034788351373cd26c8e, type: 3}
+  - {fileID: 8300000, guid: 4bb2d82d2ce06d949b13019ab09dba48, type: 3}
+  - {fileID: 8300000, guid: 6fee312825faca444976f9b411f4a9c4, type: 3}
+  - {fileID: 8300000, guid: 464d83db250fd6449a7f3199b8345439, type: 3}
+  - {fileID: 8300000, guid: f1c7c5e325ed88343b5168d3c6059622, type: 3}
+  - {fileID: 8300000, guid: b42caf7cf30bf364b8a2e8dd0ac9f15e, type: 3}
+  - {fileID: 8300000, guid: 827efdc3cf07b834ab757879328f1f5a, type: 3}
+  - {fileID: 8300000, guid: 5be3293d498aff1478d22fd47140d9b3, type: 3}
+  - {fileID: 8300000, guid: db516b6c9d077e241988f251a54b27a0, type: 3}
+  - {fileID: 8300000, guid: b285e4111a5ce4244a577127b498803d, type: 3}
+  - {fileID: 8300000, guid: d77453664553f3e4892d755b9abdcf5e, type: 3}
