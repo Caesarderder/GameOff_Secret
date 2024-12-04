@@ -22,8 +22,8 @@ public class AudioManager
     GameObject go_asPool;
 
     // ±≥æ∞“Ù¿÷∫Õ“Ù–ßµƒ“Ù¡ø
-    [Range(0f, 1f)] public float backgroundMusicVolume = 1f;
-    [Range(0f, 1f)] public float soundEffectVolume = 1f;
+    [Range(0f, 1f)] public float backgroundMusicVolume = 0.2f;
+    [Range(0f, 1f)] public float soundEffectVolume = 0.2f;
 
     private bool isMuted = false;  //  «∑Òæ≤“Ù
 
@@ -38,7 +38,7 @@ public class AudioManager
         soundEffects = Manager<TableManager>.Inst.AudioConfig.Dics;
 
         // ≥ı ºªØ±≥æ∞“Ù¿÷“Ù¡ø
-        backgroundMusicSource= GetAvailableSoundEffectSource();
+        backgroundMusicSource= go_asPool.AddComponent<AudioSource>();
         backgroundMusicSource.loop = true;
         backgroundMusicSource.volume = backgroundMusicVolume;
 
